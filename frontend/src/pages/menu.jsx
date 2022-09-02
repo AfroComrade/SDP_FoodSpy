@@ -30,12 +30,15 @@ function Menu() {
             </NavDropdown>
           </Nav>
       <Nav>
-        <Button variant="dark">
-            <i class="bi bi-person"> Account
-                </i></Button>{' '}
-                
-        <Button variant="dark">
+        <Button variant="outline-light">
+            <i class="bi bi-person"> 
+                </i> Account</Button>{' '}
+        </Nav>
+          <Nav style={{
+                paddingLeft: '10px'}}>        
+        <Button variant="outline-light" >
             <i class="bi bi-cart3"></i> Cart
+            <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
                 </Button>{' '}
       </Nav>
      

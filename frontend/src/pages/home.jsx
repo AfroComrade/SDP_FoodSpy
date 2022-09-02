@@ -8,14 +8,15 @@ function Home(){
             textAlign: "center",
             justifyContent: "center",
             alignItems: "center",
-            color: "white"
+            
         }}>
-            <h1 style = {{ fontSize: 60, fontWeight: "bold"}}>FoodSpy</h1>
-            <h2>Find the lowest priced groceries guranteed</h2>    
+            <h1 style = {{color:"white", fontSize: 60, fontWeight: "bold"}}>FoodSpy</h1>
+            <h2 style = {{color:"black"}}>Find the lowest priced groceries guranteed</h2>    
         </div>
         <div
             style={{
                 paddingTop: '100px',
+                paddingBottom: '325px',
                 display: 'flex',
                 justifyContent: "center",
                 alignItems: "center"
@@ -27,7 +28,7 @@ function Home(){
             <Form.Control
                     size = "lg"
                     type="search"
-                    placeholder="Search"
+                    placeholder="Search for item"
                     className="me-2"
                     aria-label="Search" />
                 <Button variant="dark">Search</Button>    
