@@ -2,9 +2,17 @@ import React from 'react';
 import { Form, Button } from 'react-bootstrap';
 
 function Home(){
+    document.body.style.backgroundImage = 'url(https://images.pexels.com/photos/616403/pexels-photo-616403.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1)';
+    document.body.style.backgroundRepeat = 'no-repeat';
+    document.body.style.backgroundSize = '1910px 950px';
+    document.body.style.backgroundColor = '#E0E2C4';
+    document.body.style.backgroundPosition = 'center';
+    //document.body.style.backgroundBlendMode = 'overlay';
     return(
-        <><div style={{
-            paddingTop: '150px',
+        <> 
+
+        <div style={{
+            paddingTop: '250px',
             textAlign: "center",
             justifyContent: "center",
             alignItems: "center",
@@ -39,7 +47,9 @@ function Home(){
 
         <div>
 
-        </div></>
+        </div>
+         
+        </>
     );   
 }
 
