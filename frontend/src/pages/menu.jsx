@@ -19,12 +19,12 @@ function Menu() {
             <Nav.Link text = "" href="/">Home</Nav.Link>
             <Nav.Link href="about">About</Nav.Link>
             <NavDropdown title="Recipes" id="basic-nav-dropdown">
-              <NavDropdown.Item href="recipes/saved">Saved Recipes</NavDropdown.Item>
-              <NavDropdown.Item href="recipes/database">
+              <NavDropdown.Item href="recipes_saved">Saved Recipes</NavDropdown.Item>
+              <NavDropdown.Item href="recipes_database">
               Recipes Database
               </NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item href="recipes/add">
+              <NavDropdown.Item href="recipes_add">
               Add Recipes
               </NavDropdown.Item>
             </NavDropdown>
