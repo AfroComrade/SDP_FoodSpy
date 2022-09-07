@@ -4,6 +4,8 @@ from firebase_admin import credentials, firestore
 import csv
 import time
 
+import itemSorter
+
 # Fetch the service account key JSON file contents
 cred = credentials.Certificate("./private/foodspy-39b75-firebase-adminsdk-xjs48-8714375f78.json")
 app = firebase_admin.initialize_app(cred, {
@@ -12,6 +14,8 @@ app = firebase_admin.initialize_app(cred, {
 
 db = firestore.client()
 doc_ref = db.collection(u'items')
+
+itemfile = open('items.txt', 'w')
 
 
 csvreader = csv.reader('./dummydata/SampleDataFeed.csv')
@@ -33,12 +37,11 @@ with open("./dummydata/SampleDataFeed.csv") as file:
             u'price': row[3],
             u'imageURL': row[5]
         }
-        #print(data)
-        #time.sleep(0.01)
-        #if (counter == 2):
-        #    break
         doc_ref.document(productName).set(data)
+        itemfile.write(productName + '\n')
+    itemfile.close()
 
+itemSorter.sortProducts()
 
 # connect to items firestore
 
@@ -50,6 +53,7 @@ def getInfo():
             print(u'Doc data:{}'.format(doc.to_dict()))
     except google.cloud.exceptions.NotFound:
         print(u'Missing data')
+
 
 
 

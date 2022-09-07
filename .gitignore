@@ -8,7 +8,7 @@
 /backend/config/*.json
 /backend/scripts/firebase/private
 /backend/scripts/firebase/dummydata
-
+/backend/scripts/firebase/__pycache__
 
 
 # testing
