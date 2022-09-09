@@ -20,9 +20,7 @@ print("1")
 options = webdriver.ChromeOptions()
 options.add_argument('--ignore-certificate-errors')
 options.add_argument('--incognito')
-#options.add_argument('--headless')
 driver = webdriver.Chrome(ChromeDriverManager().install(), options=options)
-#driver = webdriver.Chrome("/usr/lib/chromium-browser/chromedriver", chrome_options=options)
 
 print("2")
 
