@@ -19,23 +19,26 @@ function Menu() {
             <Nav.Link text = "" href="/">Home</Nav.Link>
             <Nav.Link href="about">About</Nav.Link>
             <NavDropdown title="Recipes" id="basic-nav-dropdown">
-              <NavDropdown.Item href="recipes/saved">Saved Recipes</NavDropdown.Item>
-              <NavDropdown.Item href="recipes/database">
+              <NavDropdown.Item href="recipes_saved">Saved Recipes</NavDropdown.Item>
+              <NavDropdown.Item href="recipes_database">
               Recipes Database
               </NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item href="recipes/add">
+              <NavDropdown.Item href="recipes_add">
               Add Recipes
               </NavDropdown.Item>
             </NavDropdown>
           </Nav>
       <Nav>
-        <Button variant="dark">
-            <i class="bi bi-person"> Account
-                </i></Button>{' '}
-                
-        <Button variant="dark">
+        <Button variant="outline-light">
+            <i class="bi bi-person"> 
+                </i> Account</Button>{' '}
+        </Nav>
+          <Nav style={{
+                paddingLeft: '10px'}}>        
+        <Button variant="outline-light" >
             <i class="bi bi-cart3"></i> Cart
+            <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
                 </Button>{' '}
       </Nav>
      
