@@ -5,5 +5,28 @@
   },
   "dependencies": {
     "bootstrap": "^3.4.1"
-  }
+  },
+  "name": "sdp_foodspy",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "app": "node app.js",
+    "prepare-backend": "cd backend && npm install",
+    "prepare-react": "cd frontend && npm install",
+    "build": "cd backend && npm run app",
+    "build-react": "cd frontend && npm run build",
+    "heroku-postbuild": "npm run prepare-react && npm run build-react"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AfroComrade/SDP_FoodSpy.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AfroComrade/SDP_FoodSpy/issues"
+  },
+  "homepage": "https://github.com/AfroComrade/SDP_FoodSpy#readme",
+  "description": ""
 }

@@ -5,10 +5,6 @@ import numpy as np
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-import json
 
 
 #URL = "https://www.tripadvisor.com/Airline_Review-d8729157-Reviews-Spirit-Airlines#REVIEWS"
@@ -24,37 +20,6 @@ Chocolate = 'chocolate'
 
 
 # https://medium.com/ymedialabs-innovation/web-scraping-using-beautiful-soup-and-selenium-for-dynamic-page-2f8ad15efe25
-
-
-
-print("----------------")
-#
-print("----------------")
-print("Start pak n save 2")
-print("----------------")
-#testU(URL)
-print("----------------")
-print("Start new world")
-
-
-noodles='noodles'
-URL = ConcatURL(noodles)
-Pages = categoryCount(PK,noodles,URL)
-RunScraper(URL,Pages,noodles)
-
-
-print("----------------")
-print("Start Fresh Choice")
-#RunScraper(U4)
-print("----------------")
-
-
-##Functions
-PK = "https://www.paknsave.co.nz/shop/Search?q="
-NW = "https://www.newworld.co.nz/shop/Search?q="
-PGG = "&pg="
-NEWWORLD = "newworld"
-PAKNSAVE = "paknsave"
 
 
 def ConcatURL(Category):
@@ -100,8 +65,13 @@ def categoryCount(Store,Category,urls):
     print('------------------------')
     return np.max(items)
     
-
-
+def NextPage(Category,PGnum):
+    PGG = "&pg="
+    PK = "https://www.paknsave.co.nz/shop/Search?q="
+    NW = "https://www.newworld.co.nz/shop/Search?q="
+    Pnum = str(PGnum)
+    URl = PK + Category + PGG + Pnum
+    return URl
 
 def RunScraper(URL, V,categories):
     for I in range(1,V+1):
@@ -134,5 +104,33 @@ def Start(urls):
 
 
 
+print("----------------")
+#
+print("----------------")
+print("Start pak n save 2")
+print("----------------")
+#testU(URL)
+print("----------------")
+print("Start new world")
+
+
+noodles='noodles'
+URL = ConcatURL(noodles)
+Pages = categoryCount(PK,noodles,URL)
+RunScraper(URL,Pages,noodles)
+
+
+print("----------------")
+print("Start Fresh Choice")
+#RunScraper(U4)
+print("----------------")
+
+
+##Functions
+PK = "https://www.paknsave.co.nz/shop/Search?q="
+NW = "https://www.newworld.co.nz/shop/Search?q="
+PGG = "&pg="
+NEWWORLD = "newworld"
+PAKNSAVE = "paknsave"
 
 
