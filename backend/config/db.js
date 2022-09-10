@@ -3,7 +3,7 @@ const fs = require('firebase-admin');
 const config = require('config');
 
 let key = process.env.PRIVATE_KEY;
-var key2 = str.replace(/\/\/\/\//g, '\/');
+var key2 = key.replace(/\/\/\/\//g, '\/');
 
 var serviceAcc2 = new Object();
 serviceAcc2.type = process.env.TYPE;
