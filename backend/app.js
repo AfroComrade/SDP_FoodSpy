@@ -6,12 +6,22 @@ const port = process.env.PORT || 8082;
 app.use(cors({ origin: true, credentials: true}));
 app.use(express.json({ extended: false}));
 
-app.get('/', (req, res) => res.send('Hello world!'));
-app.listen(port, () => console.log(`Server running on port ${port}`));
-
 const products = require('./routes/api/products');
 
 app.use('/api/products', products);
+
+if (process.env.NODE_ENV === 'producton') {
+    console.log(process.env.NODE_ENV);
+    app.get('*', (req, res) => {
+        res.send("hello world I am in the check!");
+    })
+} else {
+    app.get('/', (req, res) => res.send(`API running on post ${port}`));
+}
+
+app.get('/', (req, res) => res.send('Hello world!'));
+app.listen(port, () => console.log(`Server running on port ${port}`));
+
 
 /*
 https://sdpfoodspy.herokuapp.com/ | https://git.heroku.com/sdpfoodspy.git
