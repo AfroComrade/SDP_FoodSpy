@@ -14,9 +14,9 @@
 	  "start": "cd backend && node app.js",
     "prepare-backend": "cd backend && npm install",
     "prepare-react": "cd frontend && npm install",
-    "build": "cd backend && npm install",
+    "build": "cd backend && npm run app",
     "build-react": "cd frontend && npm run build",
-    "heroku-postbuild": "npm run prepare-react && npm run build-react"
+    "heroku-postbuild": "npm prepare-backend && npm run prepare-react && npm run build-react"
   },
   "repository": {
     "type": "git",
