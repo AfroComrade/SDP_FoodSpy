@@ -31,8 +31,8 @@ function Menu() {
           </Nav>
       <Nav>
         <Button variant="outline-light">
-            <i class="bi bi-person"> 
-                </i> Account</Button>{' '}
+        <span class="badge bg-dark text-white ms-0 rounded-pill"><i class="bi bi-person"> 
+                </i> </span> Account</Button>{' '}
         </Nav>
           <Nav style={{
                 paddingLeft: '10px'}}>        
