@@ -11,15 +11,12 @@ app.listen(port, () => console.log(`Server running on port ${port}`));
 
 const products = require('./routes/api/products');
 
-//const connectDB = require('./config/db');
-//var db = "";
-//connectDB().then(res=>{db = res});
-
-
-
-//getItem('degree').then(data => {console.log(data)});
-
 app.use('/api/products', products);
+
+/*
+https://sdpfoodspy.herokuapp.com/ | https://git.heroku.com/sdpfoodspy.git
+*/
+
 /*
 app.use('/products/:id', (req, res) => {
     getItem(req.params.id)

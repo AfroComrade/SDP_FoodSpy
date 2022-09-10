@@ -33,7 +33,6 @@ router.use('/cheapest/:id', (req, res) =>{
 
 });
 
-
 router.use('/:id', (req, res) => {
     getItem(req.params.id)
     .then(data => {res.send(data)})
