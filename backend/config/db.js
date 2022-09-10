@@ -2,6 +2,9 @@ const fs = require('firebase-admin');
 //const serviceAccount = require('./foodspy-39b75-firebase-adminsdk-xjs48-8714375f78.json');
 const config = require('config');
 
+console.log("check");
+console.log(process.env.TYPE);
+
 let serviceAcc2 = {
     "type": process.env.TYPE,
     "project_id": process.env.PROJECT_ID,
@@ -14,6 +17,8 @@ let serviceAcc2 = {
     "auth_provider_x509_cert_url": process.env.AUTH_PROVIDER_X509_CERT_URL,
     "client_x509_cert_url": process.env.CLIENT_X509_CERT_URL
 }
+
+console.log(serviceAcc2);
 
 async function connectDB() {
     fs.initializeApp({
