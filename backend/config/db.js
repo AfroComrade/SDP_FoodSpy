@@ -1,8 +1,6 @@
 const fs = require('firebase-admin');
-const serviceAccount = require('./foodspy-39b75-firebase-adminsdk-xjs48-8714375f78.json');
+//const serviceAccount = require('./foodspy-39b75-firebase-adminsdk-xjs48-8714375f78.json');
 const config = require('config');
-
-const aws = require('aws-sdk');
 
 const serviceAcc2 = ({
     "type": process.env.TYPE,
