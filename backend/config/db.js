@@ -13,7 +13,7 @@ serviceAcc2.auth_uri = process.env.AUTH_URL;
 serviceAcc2.token_uri = process.env.TOKEN_URL;
 serviceAcc2.auth_provider_x509_cert_url = process.env.AUTH_PROVIDER_X509_CERT_URL;
 serviceAcc2.client_x509_cert_url = process.env.CLIENT_X509_CERT_URL;
-var serviceAcc = JSON.stringify(obj);
+var serviceAcc = JSON.stringify(serviceAcc2);
 
 console.log(serviceAcc);
 
