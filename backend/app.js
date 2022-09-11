@@ -11,11 +11,14 @@ const products = require('./routes/api/products');
 app.use('/api/products', products);
 
 if (process.env.NODE_ENV === 'producton') {
+    
     console.log(process.env.NODE_ENV);
     app.get('*', (req, res) => {
         res.send("hello world I am in the check!");
     })
 } else {
+    require('dotenv').config();
+    console.log('foo:', process.env.FOO);
     app.get('/', (req, res) => res.send(`API running on post ${port}`));
 }
 
