@@ -10,8 +10,7 @@ const products = require('./routes/api/products');
 
 app.use('/api/products', products);
 
-if (process.env.NODE_ENV === 'producton') {
-    console.log(process.env.NODE_ENV);
+if (process.env.NODE_ENV === 'production') {
     app.use(express.static(__dirname+'/../frontend/build'));
     app.get('*', (req, res) => {
         res.sendFile(__dirname+'/../frontend/build/index.html');
