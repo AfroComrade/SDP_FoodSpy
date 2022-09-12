@@ -1,6 +1,17 @@
-import { Container, Nav, Navbar, NavDropdown, Button } from 'react-bootstrap';
+import React, { useState } from 'react';
+import { Container, Nav, Navbar, NavDropdown, Button, Modal, Form, Offcanvas } from 'react-bootstrap';
 
 function Menu() {
+
+  const [modalShow, setModalShow] = useState(false);
+  const [offcanvasShow, setOffShow] = useState(false);
+  const handleClose = () => setModalShow(false);
+  const handleShow = () => setModalShow(true);
+  const toggleShow = () => setOffShow(true);
+  const toggleClose = () => setOffShow(false);
+  
+
+
   return (
     <Navbar bg="dark" expand="lg" variant="dark">
       <Container>
@@ -30,16 +41,58 @@ function Menu() {
             </NavDropdown>
           </Nav>
       <Nav>
-        <Button variant="outline-light">
-            <i class="bi bi-person"> 
-                </i> Account</Button>{' '}
+        <Button variant="outline-light" onClick={handleShow}>
+        <span class="badge bg-dark text-white ms-0 rounded-pill"><i class="bi bi-person"> 
+                </i> </span> Account</Button>{' '}
         </Nav>
+        <Modal show={modalShow} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Account Login</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form>
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+              <Form.Label>Email address</Form.Label>
+              <Form.Control
+                type="email"
+                placeholder="name@example.com"
+                autoFocus
+              />
+            </Form.Group>
+              <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+              <Form.Label>Password</Form.Label>
+              <Form.Control
+                type="password"
+                placeholder="Password"
+                autoFocus
+              />
+            </Form.Group>
+          </Form>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={handleClose}>
+            Save Changes
+          </Button>
+        </Modal.Footer>
+      </Modal>
           <Nav style={{
                 paddingLeft: '10px'}}>        
-        <Button variant="outline-light" >
+        <Button variant="outline-light" onClick={toggleShow}>
             <i class="bi bi-cart3"></i> Cart
             <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
                 </Button>{' '}
+                <Offcanvas show={offcanvasShow} onHide={toggleClose} placement={"end"}>
+        <Offcanvas.Header closeButton>
+          <Offcanvas.Title>Offcanvas</Offcanvas.Title>
+        </Offcanvas.Header>
+        <Offcanvas.Body>
+          Some text as placeholder. In real life you can have the elements you
+          have chosen. Like, text, images, lists, etc.
+        </Offcanvas.Body>
+      </Offcanvas>
       </Nav>
      
     

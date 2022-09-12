@@ -1,7 +1,7 @@
 import React from "react";
 
 
-const About = () => {
+const AddRecipe = () => {
   return (
     <>
     <div style={{
@@ -11,7 +11,7 @@ const About = () => {
             alignItems: "center",
             
         }}>
-      <h1 style = {{ color:"white", fontSize: 60, fontWeight: "bold"}}>This is an about page</h1>
+      <h1 style = {{ color:"white", fontSize: 60, fontWeight: "bold"}}>This is the Add Recipe Page</h1>
       </div>
       <div style={{
             paddingTop: '250px'         
@@ -20,4 +20,4 @@ const About = () => {
   );
 };
 
-export default About;
+export default AddRecipe;
