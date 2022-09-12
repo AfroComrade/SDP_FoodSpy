@@ -27,7 +27,7 @@ function Home(){
                 paddingBottom: '325px',
                 display: 'flex',
                 justifyContent: "center",
-                alignItems: "center"
+                alignItems: "center",
         }}>
 
                   
@@ -45,9 +45,6 @@ function Home(){
              
         </div> 
 
-        <div>
-
-        </div>
          
         </>
     );   
