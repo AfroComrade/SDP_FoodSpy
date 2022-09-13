@@ -1,5 +1,6 @@
 import React from 'react';
 import { Form, Button } from 'react-bootstrap';
+import IsPassword from '../js/users';
 
 function Home(){
     document.body.style.backgroundImage = 'url(https://images.pexels.com/photos/616403/pexels-photo-616403.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1)';
@@ -8,6 +9,9 @@ function Home(){
     document.body.style.backgroundColor = '#2E7F72';
     document.body.style.backgroundPosition = 'center';
     //document.body.style.backgroundBlendMode = 'overlay';
+    
+
+
     return(
         <> 
 
