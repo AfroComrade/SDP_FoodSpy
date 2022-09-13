@@ -30,7 +30,6 @@ router.use('/all', (req, res) => {
 
 router.use('/cheapest/:id', (req, res) =>{
     string = req.params.id;
-
 });
 
 router.use('/:id', (req, res) => {
