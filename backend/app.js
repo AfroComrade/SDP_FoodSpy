@@ -15,7 +15,7 @@ app.use('/api/products', products);
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static(__dirname+'/../frontend/build'));
     app.get('*', (req,res) => {
-        res.sendFile(path.join(appRoot, 'frontend/build', 'index.html')
+        res.sendFile(path.join(appRoot, 'frontend/build', 'index.html'))
     });
     console.log("sup callum 2");
 } else {
