@@ -16,7 +16,7 @@ if (process.env.NODE_ENV === 'production') {
     app.use(express.static(__dirname+'/../frontend/build'));
     console.log("sup callum 2");
     app.get('*', (req,res) => {
-        res.sendFile(path.join(__dirname, '/../frontend/build', 'index.html')
+        res.sendFile(path.join(__dirname, '/../frontend/build', 'index.html'))
     });
 } else {
     //app.get('/', (req, res) => res.send(`API running on port ${port}`));
