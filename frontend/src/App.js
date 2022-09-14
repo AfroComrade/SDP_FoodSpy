@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import './App.css';
-
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import "./App.css";
+
 import Home from "./pages/home";
 import Footer from "./pages/footer";
 import Menu from './pages/menu';
@@ -13,6 +13,7 @@ import AddRecipe from './pages/AddRecipe';
 class App extends Component {
   render() {
   return (
+    <div className = "background">
     <BrowserRouter>
     <Menu />
       <Routes>
@@ -24,6 +25,7 @@ class App extends Component {
       </Routes>
       <Footer />
     </BrowserRouter>
+    </div>
   );
 }
 }
