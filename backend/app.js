@@ -6,7 +6,7 @@ const port = process.env.PORT || 8082;
 app.use(cors({ origin: true, credentials: true}));
 app.use(express.json({ extended: false}));
 
-var path = require('path');
+const path = require('path');
 
 const products = require('./routes/api/products');
 
@@ -15,9 +15,8 @@ app.use('/api/products', products);
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static(__dirname+'/../frontend/build'));
     console.log("sup callum 2");
-    console.log(path.join(appRoot, 'frontend/build', 'index.html'));
-    app.get('*', (req,res) => {
-        res.sendFile(path.join(appRoot, 'frontend/build', 'index.html'))
+    app.get('/*', (req,res) => {
+        res.sendFile(path.join(__dirname, 'frontend/build', 'index.html')
     });
 } else {
     //app.get('/', (req, res) => res.send(`API running on port ${port}`));
