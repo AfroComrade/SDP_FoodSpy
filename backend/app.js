@@ -12,14 +12,16 @@ app.use('/api/products', products);
 
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static(__dirname+'/../frontend/build'));
-    app.get('*', (req, res) => {
+    app.get('*', (req,res) => {
         res.sendFile(__dirname+'/../frontend/build/index.html')
     });
+    console.log("sup callum 2");
 } else {
-    app.get('/', (req, res) => res.send(`API running on post ${port}`));
+    //app.get('/', (req, res) => res.send(`API running on port ${port}`));
+    console.log("sup callum");
 }
 
-app.get('/', (req, res) => res.send('Hello world!'));
+//app.get('/', (req, res) => res.send('Hello world!'));
 app.listen(port, () => console.log(`Server running on port ${port}`));
 
 
