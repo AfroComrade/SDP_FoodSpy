@@ -5,7 +5,6 @@ import "./App.css";
 import Home from "./pages/home";
 import Footer from "./pages/footer";
 import Menu from './pages/menu';
-
 import About from './pages/about';
 import SavedRecipes from './pages/SavedRecipes';
 import RecipeDatabase from './pages/RecipeDatabase';
