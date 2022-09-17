@@ -27,8 +27,8 @@ function Popular() {
                 <h3>Popular Recipes</h3>
                 <Splide options={{
                     perPage: 3,
-                    arrows: false,
-                    pagination: false,
+                    arrows: true,
+                    pagination: true,
                     drag: "free",
                     gap: "5rem",
                 }}>

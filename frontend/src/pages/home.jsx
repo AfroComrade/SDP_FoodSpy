@@ -13,7 +13,7 @@ import '..//App.css';
             
         }}>
             <h1 style = {{color:"white", fontSize: 60, fontWeight: "bold"}}>FoodSpy</h1>
-            <h2 style = {{color:"black"}}>Find the lowest priced groceries guranteed</h2>    
+            <h2 style = {{color:"black"}}>Find the lowest priced groceries guaranteed</h2>    
         </div>
         <div
             style={{
