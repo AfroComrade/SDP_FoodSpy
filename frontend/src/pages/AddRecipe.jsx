@@ -1,9 +1,10 @@
 import React from "react";
+import '..//App.css';
 
-
-const AddRecipe = () => {
+function AddRecipe(){
   return (
     <>
+    
     <div style={{
             paddingTop: '250px',
             textAlign: "center",
@@ -15,7 +16,10 @@ const AddRecipe = () => {
       </div>
       <div style={{
             paddingTop: '250px'         
-        }}></div>
+        }}
+        >
+
+        </div>
     </>
   );
 };

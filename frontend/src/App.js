@@ -1,6 +1,7 @@
-import './App.css';
-
+import React, { Component } from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import "./App.css";
+
 import Home from "./pages/home";
 import Footer from "./pages/footer";
 import Menu from './pages/menu';
@@ -10,8 +11,10 @@ import SavedRecipes from './pages/SavedRecipes';
 import RecipeDatabase from './pages/RecipeDatabase';
 import AddRecipe from './pages/AddRecipe';
 
-function App() {
+class App extends Component {
+  render() {
   return (
+    <div className = "background">
     <BrowserRouter>
     <Menu />
       <Routes>
@@ -23,7 +26,9 @@ function App() {
       </Routes>
       <Footer />
     </BrowserRouter>
+    </div>
   );
+}
 }
 
 export default App;

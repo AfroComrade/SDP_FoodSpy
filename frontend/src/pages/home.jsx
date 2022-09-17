@@ -1,5 +1,10 @@
 import {React,useState} from 'react';
 import { Form, Button } from 'react-bootstrap';
+
+import '..//App.css';
+
+ function Home() {
+
 import * as FRM from '../js/users';
 //import * as TO from '../../../backend/config/db';
 
@@ -12,19 +17,9 @@ function Home(){
     document.body.style.backgroundPosition = 'center';
     //document.body.style.backgroundBlendMode = 'overlay';
     
-    const [input,SetInput,GetInput] = useState("");
-    
-    const GETgo = () => 
-    {   
-        //console.log(input.length);
-        //console.log(FRM.IsEmpty(input));
-        FRM.IsPassword(input);
-        
-    }
 
     return(
         <> 
-
         <div style={{
             paddingTop: '250px',
             textAlign: "center",
@@ -44,26 +39,24 @@ function Home(){
                 alignItems: "center",
                 
         }}>
-
-                  
+            
         <Form className="d-flex mx-sm-10 mb-2 ">
             
             <Form.Control                   
                     size = "lg"
-                    onChange={event => SetInput(event.target.value)} 
                     type="search"
                     placeholder="Search for item"
                     className="me-2"
                     aria-label="Search" />
-                <Button onClick={GETgo} variant="dark">Search</Button>    
+                <Button variant="dark">Search</Button>    
                 
                </Form>    
              
         </div> 
-
-         
         </>
-    );   
-}
+        
+    );
+    }
+    
 
 export default Home;

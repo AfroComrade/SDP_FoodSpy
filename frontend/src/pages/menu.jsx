@@ -10,14 +10,6 @@ function Menu() {
   const toggleShow = () => setOffShow(true);
   const toggleClose = () => setOffShow(false);
   
-/*
-
-  Login Block
-
-
-*/
-
-
 
   return (
     <Navbar bg="dark" expand="lg" variant="dark">
