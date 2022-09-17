@@ -1,8 +1,23 @@
-import React from 'react';
+import {React,useState} from 'react';
 import { Form, Button } from 'react-bootstrap';
+
 import '..//App.css';
 
  function Home() {
+
+import * as FRM from '../js/users';
+//import * as TO from '../../../backend/config/db';
+
+
+function Home(){
+    document.body.style.backgroundImage = 'url(https://images.pexels.com/photos/616403/pexels-photo-616403.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1)';
+    document.body.style.backgroundRepeat = 'no-repeat';
+    document.body.style.backgroundSize = '1910px 950px';
+    document.body.style.backgroundColor = '#2E7F72';
+    document.body.style.backgroundPosition = 'center';
+    //document.body.style.backgroundBlendMode = 'overlay';
+    
+
     return(
         <> 
         <div style={{
@@ -22,11 +37,12 @@ import '..//App.css';
                 display: 'flex',
                 justifyContent: "center",
                 alignItems: "center",
+                
         }}>
             
         <Form className="d-flex mx-sm-10 mb-2 ">
             
-            <Form.Control
+            <Form.Control                   
                     size = "lg"
                     type="search"
                     placeholder="Search for item"
