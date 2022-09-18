@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import '@splidejs/react-splide/css';
+import {Link} from 'react-router-dom';
 
 function Popular() {
     const[popular, setPopRecipe] = useState([]);
@@ -14,7 +15,7 @@ function Popular() {
 
         
         const api = await fetch(
-            `https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_API_KEY}&number=5`
+            `https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_API_KEY}&number=20`
         );
         const data = await api.json();
         setPopRecipe(data.recipes);
@@ -22,13 +23,12 @@ function Popular() {
 
     return (
     <div>
-        return(
             <Wrapper>
                 <h3>Popular Recipes</h3>
                 <Splide options={{
-                    perPage: 3,
-                    arrows: false,
-                    pagination: false,
+                    perPage: 4,
+                    arrows: true,
+                    pagination: true,
                     drag: "free",
                     gap: "5rem",
                 }}>
@@ -36,16 +36,17 @@ function Popular() {
                     return(
                         <SplideSlide key={recipe.id}>
                         <Card>
+                            <Link to={'/recipe/' + recipe.id}>
                             <p>{recipe.title}</p>
                             <img src={recipe.image} alt="recipe.title"/>
-                            <Gradient />         
+                            <Gradient />
+                            </Link>         
                         </Card>
                         </SplideSlide>
                     );
             })}
             </Splide>
             </Wrapper>
-         ); 
     </div>
     );
 }
