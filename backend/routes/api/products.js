@@ -100,5 +100,5 @@ router.use('/search/:id', (req, res) =>{
 
 module.exports = router;
 
-
-// http://localhost:8082/api/products/180%20Degrees%204%20Seed%20Oat%20Crackers%20Cumin%20135g
+// http://localhost:8082/api/products/product/180%20Degrees%204%20Seed%20Oat%20Crackers%20Cumin%20135g
+// http://localhost:8082/api/products/search/chocolate%20whittakers%20creamy
