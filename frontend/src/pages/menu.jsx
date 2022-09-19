@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Container, Nav, Navbar, NavDropdown, Button, Modal, Form, Offcanvas } from 'react-bootstrap';
+import { Container, Nav, Navbar, NavDropdown, Button, Modal, Form, Offcanvas, Row, Col } from 'react-bootstrap';
 
 function Menu() {
 
@@ -26,14 +26,14 @@ function Menu() {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link text = "" href="/">Home</Nav.Link>
-            <Nav.Link href="about">About</Nav.Link>
+            <Nav.Link href="/about">About</Nav.Link>
             <NavDropdown title="Recipes" id="basic-nav-dropdown">
-              <NavDropdown.Item href="recipes_saved">Saved Recipes</NavDropdown.Item>
-              <NavDropdown.Item href="recipes_database">
+              <NavDropdown.Item href="/recipes_saved">Saved Recipes</NavDropdown.Item>
+              <NavDropdown.Item href="/recipes_database">
               Recipes Database
               </NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item href="recipes_add">
+              <NavDropdown.Item href="/recipes_add">
               Add Recipes
               </NavDropdown.Item>
             </NavDropdown>
@@ -68,12 +68,29 @@ function Menu() {
           </Form>
         </Modal.Body>
         <Modal.Footer>
+          <Container>
+          <Row >
+            <Col >
+            <Button variant="warning" onClick={handleClose}>
+            Create Account
+          </Button>
+          </Col>
+          <Col md="4">
+          <Button variant="primary" onClick={handleClose}>
+            Login
+          </Button>
+         
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary" onClick={handleClose}>
-            Save Changes
-          </Button>
+          </Col>
+          </Row>
+          <Row>
+            
+          <a href="forgot_password">Forgot your password</a>
+         
+          </Row>
+          </Container>
         </Modal.Footer>
       </Modal>
           <Nav style={{
