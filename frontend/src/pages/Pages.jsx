@@ -2,10 +2,10 @@ import React from 'react';
 import {  Routes, Route } from "react-router-dom";
 import "../App.css";
 
-import Home from "./Home";
+import Home from "./HomePage";
 import Footer from "./Footer";
-import Menu from './Menu';
-import About from './About';
+import NavBar from './NavBar';
+import About from './AboutPage';
 import SavedRecipes from './SavedRecipes';
 import RecipeDatabase from './RecipeDatabase';
 import AddRecipe from './AddRecipe';
@@ -17,7 +17,7 @@ import CreateAcc from './CreateAcc';
 function Pages() {
   return (
     <div className = "background">
-    <Menu />
+    <NavBar />
       <Routes>
         <Route path="/" element={<Home />}/>
         <Route path="/about" element={<About />}/>
