@@ -18,12 +18,12 @@ function Pages() {
     <Menu />
       <Routes>
         <Route path="/" element={<Home />}/>
-        <Route path="/about" element={<About />}/>
-        <Route path="/recipes_saved" element={<SavedRecipes />}/>
-        <Route path="/recipes_database" element={<RecipeDatabase/>}/>
-        <Route path="/recipes_add" element={<AddRecipe/>}/>
-        <Route path="/recipe/:name" element={<Recipe />}/>
-        <Route path="/searched/:search" element={<Searched />}/>
+        <Route path="about" element={<About />}/>
+        <Route path="recipes_saved" element={<SavedRecipes />}/>
+        <Route path="recipes_database" element={<RecipeDatabase/>}/>
+        <Route path="recipes_add" element={<AddRecipe/>}/>
+        <Route path="recipe/:name" element={<Recipe />}/>
+        <Route path="searched/:search" element={<Searched />}/>
       </Routes>
       <Footer />
     </div>
