@@ -71,9 +71,9 @@ function Menu() {
           <Container>
           <Row >
             <Col >
-            <Button variant="warning" onClick={handleClose}>
-            Create Account
-          </Button>
+            <a href="/create_account" class="btn btn-warning active" role="button" aria-pressed="true">Create Account</a>
+            
+          
           </Col>
           <Col md="4">
           <Button variant="primary" onClick={handleClose}>
@@ -87,7 +87,7 @@ function Menu() {
           </Row>
           <Row>
             
-          <a href="forgot_password">Forgot your password</a>
+          <a href="/forgot_password">Forgot your password</a>
          
           </Row>
           </Container>
