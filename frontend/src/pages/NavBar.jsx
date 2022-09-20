@@ -13,26 +13,7 @@ function Menu() {
   const [Email,SetEmail] = useState('');
   const [Password,SetPassword] = useState('');
 
-  const GO = async () =>{
-    const LoginData = {EML:Email,PWD:Password};
-    var LK = 'http://localhost:8082/api/account/yolo/';
-    try 
-    {
-      fetch(LK, {
-        method: 'post',
-        headers: {'Content-Type':'application/json'},
-        body: {
-         "EML": Email,
-         "PWD": Password
-        }
-       }); 
-    } 
-    catch (error) 
-    {
-      console.log(error);
-    }
-  }
-
+  
   return (
     <Navbar bg="dark" expand="lg" variant="dark">
       <Container>
@@ -103,7 +84,7 @@ function Menu() {
           
           </Col>
           <Col md="4">
-          <Button variant="primary" onClick={GO}>
+          <Button variant="primary" onClick={handleClose}>
             Login
           </Button>
          
