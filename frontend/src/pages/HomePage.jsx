@@ -1,5 +1,6 @@
 import React from 'react';
 import { Form, Button } from 'react-bootstrap';
+import SearchItems from '../components/SearchItems';
 import '..//App.css';
 
  function Home() {
@@ -17,24 +18,14 @@ import '..//App.css';
         </div>
         <div
             style={{
-                paddingTop: '100px',
+                paddingTop: '50px',
                 paddingBottom: '325px',
                 display: 'flex',
                 justifyContent: "center",
                 alignItems: "center",
         }}>
             
-        <Form className="d-flex mx-sm-10 mb-2 ">
-            
-            <Form.Control
-                    size = "lg"
-                    type="search"
-                    placeholder="Search for item"
-                    className="me-2"
-                    aria-label="Search" />
-                <Button variant="dark">Search</Button>    
-                
-               </Form>    
+        <SearchItems/>
              
         </div> 
         </>
