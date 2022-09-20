@@ -42,8 +42,8 @@ async function getMatches(res, string) {
             
             if (allfound)
             {
-                //founds.push(list[e]);
-                founds.push(list[e].slice(0, -1));
+                founds.push(list[e]);
+                //founds.push(list[e].slice(0, -1));
             }
         }
         
