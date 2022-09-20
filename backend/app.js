@@ -9,8 +9,9 @@ app.use(express.json({ extended: false}));
 const path = require('path');
 
 const products = require('./routes/api/products');
-
+const Account = require('./routes/api/account');
 app.use('/api/products', products);
+app.use('/api/account', Account);
 
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static(path.join(__dirname,'/../frontend/build')));

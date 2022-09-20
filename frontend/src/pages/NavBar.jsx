@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Container, Nav, Navbar, NavDropdown, Button, Modal, Form, Offcanvas, Row, Col } from 'react-bootstrap';
+//import { use } from '../../../backend/routes/api/account';
 
 function Menu() {
 
@@ -9,7 +10,29 @@ function Menu() {
   const handleShow = () => setModalShow(true);
   const toggleShow = () => setOffShow(true);
   const toggleClose = () => setOffShow(false);
-  
+  const [Email,SetEmail] = useState('');
+  const [Password,SetPassword] = useState('');
+
+  const GO = async () =>{
+    const LoginData = {EML:Email,PWD:Password};
+    var LK = 'http://localhost:8082/api/account/yolo/';
+    try 
+    {
+      fetch(LK, {
+        method: 'post',
+        headers: {'Content-Type':'application/json'},
+        body: {
+         "EML": Email,
+         "PWD": Password
+        }
+       }); 
+    } 
+    catch (error) 
+    {
+      console.log(error);
+    }
+  }
+
   return (
     <Navbar bg="dark" expand="lg" variant="dark">
       <Container>
@@ -54,6 +77,8 @@ function Menu() {
               <Form.Control
                 type="email"
                 placeholder="name@example.com"
+                input = {Email}
+                onChange={(e) => SetEmail(e.target.value)}
                 autoFocus
               />
             </Form.Group>
@@ -62,6 +87,8 @@ function Menu() {
               <Form.Control
                 type="password"
                 placeholder="Password"
+                input = {Password}
+                onChange={(e) => SetPassword(e.target.value)}
                 autoFocus
               />
             </Form.Group>
@@ -76,7 +103,7 @@ function Menu() {
           
           </Col>
           <Col md="4">
-          <Button variant="primary" onClick={handleClose}>
+          <Button variant="primary" onClick={GO}>
             Login
           </Button>
          
