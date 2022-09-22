@@ -1,37 +1,38 @@
 import React, {useEffect, useState}  from "react";
 import {useParams} from 'react-router-dom';
 import styled from "styled-components";
-import Search from "../components/Search";
+import SearchItems from "../components/SearchItems";
 import {Link} from 'react-router-dom';
 
 
-function Searched(){ 
+function SearchedItems(){ 
 
-    const [searchedRecipes, setSearchedRecipes] = useState([]);
+    const [searchedItems, setSearchedItems] = useState([]);
     let params = useParams();
 
-    const getSearched = async (name) => {
+    const getSearchedItems = async (name) => {
         const data = await fetch(
-            `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&query=${name}`
+            `https://sdpfoodspy.herokuapp.com/api/products/search/${name}`
         );
-        const recipes = await data.json();
-        setSearchedRecipes(recipes.results);
+        const items = await data.json();
+        setSearchedItems(items.results);
     };
 
     useEffect(() => {
-        getSearched(params.search);
+        getSearchedItems(params.search);
+        console.log(getSearchedItems);
     },[params.search]);
 
     return (
     <><div>
-            <Search />
+            <SearchItems />
         </div><Grid>
-                {searchedRecipes.map((recipe) => {
+                {searchedItems.map((items) => {
                     return (
-                        <Card key={recipe.id}>
-                            <Link to ={'/recipe/' + recipe.id}>
-                            <img src={recipe.image} alt={recipe.title} />
-                            <h4>{recipe.title}</h4>
+                        <Card key={items.product}>
+                            <Link to ={'/items/' + items.product}>
+                            <img src={items.imageURL} alt={items.product} />
+                            <h4>{items.product}</h4>
                             </Link>
                         </Card>
                     );
@@ -61,4 +62,4 @@ const Card = styled.div`
         color: black;
     }`;
 
-export default Searched;
+export default SearchedItems;
