@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Container, Nav, Navbar, NavDropdown, Button, Modal, Form, Offcanvas, Row, Col } from 'react-bootstrap';
 //import { use } from '../../../backend/routes/api/account';
+import {Login} from "../js/Authentication/userAuthentication"; 
 
 function Menu() {
 
@@ -14,6 +15,19 @@ function Menu() {
   const [Password,SetPassword] = useState('');
 
   //Good to go 
+
+  
+
+  const GoLogin = () =>
+  {
+    
+      try {
+        Login(Email,Password);
+      } catch (error) 
+      {
+        console.log(error); 
+      }
+  }
 
   return (
     <Navbar bg="dark" expand="lg" variant="dark">
@@ -85,7 +99,7 @@ function Menu() {
           
           </Col>
           <Col md="4">
-          <Button variant="primary" onClick={handleClose}>
+          <Button variant="primary" onClick={GoLogin}>
             Login
           </Button>
          
