@@ -18,7 +18,7 @@ import SearchedItems from './SearchPageItems';
 
 function Pages() {
   return (
-    <div className = "background">
+    <div >
     <NavBar />
       <Routes>
         <Route path="/" element={<Home />}/>

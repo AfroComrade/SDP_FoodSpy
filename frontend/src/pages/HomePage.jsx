@@ -1,8 +1,7 @@
 import React from 'react';
-import { Form, Button } from 'react-bootstrap';
 import SearchItems from '../components/SearchItems';
 import '..//App.css';
-import { render } from '@testing-library/react';
+
 
  function Home() {
     document.body.style.backgroundImage = 'url(https://images.pexels.com/photos/616403/pexels-photo-616403.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1)';

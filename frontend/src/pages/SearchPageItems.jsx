@@ -2,10 +2,15 @@ import React, {useEffect, useState}  from "react";
 import {useParams} from 'react-router-dom';
 import styled from "styled-components";
 import SearchItems from "../components/SearchItems";
-import {Link} from 'react-router-dom';
+
 
 
 function SearchedItems(){ 
+    document.body.style.backgroundImage = '';
+    document.body.style.backgroundRepeat = 'no-repeat';
+    document.body.style.backgroundSize = '1910px 950px';
+    document.body.style.backgroundColor = '#2E7F72';
+    document.body.style.backgroundPosition = 'center';
 
     const [searchedItems, setSearchedItems] = useState([]);
     let params = useParams();
@@ -27,18 +32,23 @@ function SearchedItems(){
     },[params.searchitems]);
 
     return (
-    <><div>
+    <><div
+        style={{
+                paddingTop: '100px',
+                paddingBottom: '100px',
+                
+        }}>
             <SearchItems />
         </div><Grid>
                 {searchedItems.map((items) => {
                     return (
                         <Card key={items.product}>
-                            <Link to ={'/items/' + items.product}>
+                            
                             <img src={items.imageURL} alt={items.product} />
                             <h4>{items.product}</h4>
                             <h4>${items.price}</h4>
                             <h4>{items.location}</h4>
-                            </Link>
+                            
                         </Card>
                     );
                 })}
