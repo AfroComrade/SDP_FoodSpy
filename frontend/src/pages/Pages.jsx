@@ -13,8 +13,8 @@ import Recipe from './Recipe';
 import Searched from './SearchPage';
 import ForgotPassword from './ForgotPassword';
 import CreateAcc from './CreateAcc';
-import SearchItems from '../components/SearchItems';
-import Items from './Items';
+import SearchedItems from './SearchPageItems';
+
 
 function Pages() {
   return (
@@ -28,8 +28,7 @@ function Pages() {
         <Route path="/recipes_add" element={<AddRecipe/>}/>
         <Route path="/recipe/:name" element={<Recipe />}/>
         <Route path="/searched/:search" element={<Searched />}/>
-        <Route path='/searcheditems/:searchitems' element={<SearchItems />}/>
-        <Route path="/items/:name" element={<Items />}/>
+        <Route path='/searcheditems/:searchitems' element={<SearchedItems />}/>
         <Route path="/forgot_password" element={<ForgotPassword />}/>
         <Route path="/create_account" element={<CreateAcc />}/>
       </Routes>

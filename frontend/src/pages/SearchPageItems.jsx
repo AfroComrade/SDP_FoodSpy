@@ -11,17 +11,20 @@ function SearchedItems(){
     let params = useParams();
 
     const getSearchedItems = async (name) => {
+        console.log("hello1");
+        console.log(name);
         const data = await fetch(
-            `https://sdpfoodspy.herokuapp.com/api/products/search/${name}`
+            `http://sdpfoodspy.herokuapp.com/api/products/search/${name}`
         );
         const items = await data.json();
-        setSearchedItems(items.results);
+        setSearchedItems(items);
+        console.log(items);
     };
 
     useEffect(() => {
-        getSearchedItems(params.search);
-        console.log(getSearchedItems);
-    },[params.search]);
+        getSearchedItems(params.searchitems);
+        console.log(params.searchitems);
+    },[params.searchitems]);
 
     return (
     <><div>
@@ -33,6 +36,8 @@ function SearchedItems(){
                             <Link to ={'/items/' + items.product}>
                             <img src={items.imageURL} alt={items.product} />
                             <h4>{items.product}</h4>
+                            <h4>${items.price}</h4>
+                            <h4>{items.location}</h4>
                             </Link>
                         </Card>
                     );
