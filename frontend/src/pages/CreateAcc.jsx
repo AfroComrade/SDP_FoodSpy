@@ -1,23 +1,29 @@
 import React from 'react';
 import { Form, Button } from 'react-bootstrap';
-import '..//App.css';
 
- function Home() {
+
+
+
+ function CreateAcc() {
+
+    // doSomething = function (e) {
+    //     alert('it works!');
+    //     e.preventDefault();
+    // }
     return(
         <> 
         <div style={{
-            paddingTop: '250px',
+            paddingTop: '100px',
             textAlign: "center",
             justifyContent: "center",
             alignItems: "center",
             
         }}>
-            <h1 style = {{color:"white", fontSize: 60, fontWeight: "bold"}}>FoodSpy</h1>
-            <h2 style = {{color:"black"}}>Find the lowest priced groceries guranteed</h2>    
+            <h2 style = {{color:"black"}}>Create a new account</h2>    
         </div>
         <div
             style={{
-                paddingTop: '100px',
+                paddingTop: '50px',
                 paddingBottom: '325px',
                 display: 'flex',
                 justifyContent: "center",
@@ -28,13 +34,15 @@ import '..//App.css';
             
             <Form.Control
                     size = "lg"
-                    type="search"
-                    placeholder="Search for item"
+                    type="name"
+                    placeholder="First Name"
                     className="me-2"
-                    aria-label="Search" />
-                <Button variant="dark">Search</Button>    
+                    aria-label="F-Name" />
+                 
                 
-               </Form>    
+               </Form>  
+
+                <button type="button" class="btn btn-primary" >Submit</button> 
              
         </div> 
         </>
@@ -43,4 +51,4 @@ import '..//App.css';
     }
     
 
-export default Home;
+export default CreateAcc;
