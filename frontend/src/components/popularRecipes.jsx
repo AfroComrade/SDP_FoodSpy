@@ -12,8 +12,6 @@ function Popular() {
     }, []);
 
     const getPopRecipes = async () => {
-
-        
         const api = await fetch(
             `https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_API_KEY}&number=20`
         );
@@ -22,8 +20,8 @@ function Popular() {
     };
 
     return (
-    <div>
-            <Wrapper>
+       <>
+        <Wrapper>
                 <h3>Popular Recipes</h3>
                 <Splide options={{
                     perPage: 4,
@@ -47,7 +45,7 @@ function Popular() {
             })}
             </Splide>
             </Wrapper>
-    </div>
+        </>
     );
 }
 

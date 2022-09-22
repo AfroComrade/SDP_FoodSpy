@@ -7,7 +7,7 @@ import Pages from './pages/Pages';
 class App extends Component {
   render() {
   return (
-    <div className = "background">
+    <div >
     <BrowserRouter>
         <Pages />
     </BrowserRouter>

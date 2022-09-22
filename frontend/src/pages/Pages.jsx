@@ -13,10 +13,12 @@ import Recipe from './Recipe';
 import Searched from './SearchPage';
 import ForgotPassword from './ForgotPassword';
 import CreateAcc from './CreateAcc';
+import SearchedItems from './SearchPageItems';
+
 
 function Pages() {
   return (
-    <div className = "background">
+    <div >
     <NavBar />
       <Routes>
         <Route path="/" element={<Home />}/>
@@ -26,6 +28,7 @@ function Pages() {
         <Route path="/recipes_add" element={<AddRecipe/>}/>
         <Route path="/recipe/:name" element={<Recipe />}/>
         <Route path="/searched/:search" element={<Searched />}/>
+        <Route path='/searcheditems/:searchitems' element={<SearchedItems />}/>
         <Route path="/forgot_password" element={<ForgotPassword />}/>
         <Route path="/create_account" element={<CreateAcc />}/>
       </Routes>

@@ -11,10 +11,10 @@ function Searched(){
     let params = useParams();
 
     const getSearched = async (name) => {
-        const data = await fetch(
+        const api = await fetch(
             `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&query=${name}`
         );
-        const recipes = await data.json();
+        const recipes = await api.json();
         setSearchedRecipes(recipes.results);
     };
 
@@ -25,9 +25,11 @@ function Searched(){
     return (
     <><div>
             <Search />
+            <h3>Search Results</h3>
         </div><Grid>
                 {searchedRecipes.map((recipe) => {
                     return (
+                        
                         <Card key={recipe.id}>
                             <Link to ={'/recipe/' + recipe.id}>
                             <img src={recipe.image} alt={recipe.title} />

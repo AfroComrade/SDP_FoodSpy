@@ -1,10 +1,17 @@
 import React from 'react';
-import { Form, Button } from 'react-bootstrap';
 import SearchItems from '../components/SearchItems';
 import '..//App.css';
 
+
  function Home() {
+    document.body.style.backgroundImage = 'url(https://images.pexels.com/photos/616403/pexels-photo-616403.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1)';
+    document.body.style.backgroundRepeat = 'no-repeat';
+    document.body.style.backgroundSize = '1910px 950px';
+    document.body.style.backgroundColor = '#2E7F72';
+    document.body.style.backgroundPosition = 'center';
     return(
+
+        
         <> 
         <div style={{
             paddingTop: '250px',
