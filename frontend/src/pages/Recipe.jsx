@@ -4,6 +4,8 @@ import { useParams } from "react-router-dom";
 
 function Recipe(){
 
+    document.body.style.background = "#A5A692";
+
     let params = useParams();
     const [details, setDetails] = useState({});
     const [activeTab, setActiveTab] = useState("instructions");
@@ -19,8 +21,9 @@ function Recipe(){
     }, [params.name]);
 
     return <DetailWrapper>
+    
         <div>
-            <h2>{details.title}</h2>
+            <h1>{details.title}</h1>
             <img src={details.image} alt={details.title}/>
         </div>
         <Info>
@@ -29,7 +32,7 @@ function Recipe(){
             <Button className={activeTab === 'ingredients' ? 'active' : ''} onClick={() => setActiveTab('ingredients')}>Ingredients</Button>
             {activeTab === 'summary' && (
                 <div>
-                    <h2 dangerouslySetInnerHTML={{__html: details.summary}}></h2>
+                    <p dangerouslySetInnerHTML={{__html: details.summary}}></p>
                 </div>
             )}
             {activeTab === 'instructions' && (
@@ -40,17 +43,25 @@ function Recipe(){
             <ul>
                 {details.extendedIngredients.map((ingredient) => 
                     <li key={ingredient.id}>{ingredient.original}</li>
-                )};
-            </ul>)}
-
+                )}
+            </ul>)}         
         </Info>
     </DetailWrapper>
+    
 }
 
 const DetailWrapper = styled.div`
     margin-top: 10rem;
     margin-bottom: 5rem;
     display: flex;
+
+    img{
+        border-radius: 2rem;
+        left: 10;
+        width: 100%
+        height: 100%
+        object-fit: cover;
+    }
 
     .active {
         background: linear-gradient(35deg, #494949, #313131);
@@ -59,13 +70,18 @@ const DetailWrapper = styled.div`
     h2{
         margin-bottom: 2rem;
         font-size: 8;
+        background-color: #A5A692;
     }
     li{
         font-size: 1.2rem;
         line-height: 2.5rem;
+        background-color: #A5A692;
+        text-align: center;
+        right: 10;
     }
     ul {
         margin-top: 2rem;
+        background-color: #A5A692;
     }
 `;
 
