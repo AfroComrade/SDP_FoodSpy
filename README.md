@@ -12,8 +12,8 @@ This is a Web App to search food items and locate the best prices on items. It a
 - Price Comparing
 - Location Map of Stores (Still in Development)
 - Recipe Database 
-- User Added Recipe 
-- User Accounts
+- User Added Recipe (Still in Development)
+- User Accounts 
 
 ---
 
