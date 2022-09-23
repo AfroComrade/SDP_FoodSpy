@@ -1,5 +1,4 @@
 import firebase_admin
-import google.cloud
 from firebase_admin import credentials, firestore
 
 def firebaseInitialize():
@@ -13,4 +12,5 @@ def firebaseCommit(items):
     db = firestore.client()
     doc_ref = db.collection(u'items')
     for item in items:
+        #print(item)
         doc_ref.document(item["product"]).set(item)

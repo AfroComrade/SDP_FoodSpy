@@ -1,12 +1,21 @@
+# Supermarket scraper script
+# This navigates to supermarket websites and scrapes product information
+# Each supermarket has a set of categories that can be traversed for product info
+# This is specifically designed for paknsave and new world, because we have countdown information
+# There are a few sets of commented code that isn't used or specific to different supermarket but it'll make sense as you go through
+
 from random import randint
+import time
 import ScraperCommit
 
 from bs4 import BeautifulSoup
 from selenium import webdriver
-import pickle
 from webdriver_manager.chrome import ChromeDriverManager
+#We only need pickle if we need cookies
+import pickle
 
-# https://medium.com/ymedialabs-innovation/web-scraping-using-beautiful-soup-and-selenium-for-dynamic-page-2f8ad15efe25
+
+# Open the web page with various options
 def initializeDriver(url):
     options = webdriver.ChromeOptions()
     options.add_argument('--ignore-certificate-errors')
@@ -16,12 +25,16 @@ def initializeDriver(url):
     options.add_argument('--user-agent=Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36')
     driver = webdriver.Chrome(ChromeDriverManager().install(), options=options)
     driver.get(url)
+    time.sleep(1)
+    
+    # ~~~ Use this if you need to save and use cookies ~~~
     #cookies = pickle.load(open("./cookies.pkl", "rb"))
     #for cookie in cookies:
     #    driver.add_cookie(cookie)
-    #time.sleep(2)
+
     return driver
 
+# Go through a web page source, find the items, add details to an array of dicts, return for processing & committing
 def scraper(page_source):
     soup = BeautifulSoup(page_source, 'lxml')
     items = []
@@ -40,8 +53,10 @@ def scraper(page_source):
         
         item_name = item_selector.find('a')
         item_name = item_name['aria-label']
+        item_name = item_name.replace("\n","")
+        item_name = item_name.replace("/","")
         item_price = str(item_dollar_price) + "." + str(item_cent_price)
-        item_location = "newworld"
+        item_location = "paknsave"
 
         product = dict({"product": item_name, "price": item_price, "imageURL": item_imageURL, "location": item_location})
         items.append(product)
@@ -63,18 +78,18 @@ def loopPages(url):
     while (check):
         driver = initializeDriver(URL)
         items = scraper(driver.page_source)
-        print("committing" + URL)
+        print("committing " + URL)
         commitItems(items)
         check = getNextPage2(driver.page_source)
         driver.quit()
         URL = url
         URL += "?pg=" + str(counter)
-        #time.sleep(0.5)
         counter += 1
     return items
 
+#Save the items in firebase and on the text file searched by the backend server
 def commitItems(items):
-    print(items)
+    #print(items)
     # Open the items.txt to retrieve all the items we currently have listed
     file = open('../firebase/items.txt', 'r')
     productlines = file.readlines()
@@ -91,8 +106,8 @@ def commitItems(items):
     # Remove Duplicates & sort
     productnames = list(dict.fromkeys(productnames))
     productnames.sort()
+    # Save the items in the file accessed by the backend server
     file = open('../firebase/items.txt', 'w')
-    # Save the items in
     for line in productnames:
         file.write(line + '\n')
     file.close()
@@ -101,8 +116,9 @@ def commitItems(items):
     ScraperCommit.firebaseCommit(items)
 
 
+# main
 ScraperCommit.firebaseInitialize()
-file = open('./newworld.txt', 'r')
+file = open('./paknsave.txt', 'r')
 paknsaveURLS = file.readlines()
 file.close()
 items = []
