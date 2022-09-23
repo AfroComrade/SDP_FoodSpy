@@ -24,12 +24,12 @@ function SearchItems(){
 }
 
 const FormStyle = styled.form`
-    margin: 0rem 30rem;
-    position: relative;
     
+    position: relative;
+    width: auto;
     div{
-        width: 100%;
-        position: relative; 
+        
+        position: center; 
     }
 
     input{
@@ -45,7 +45,7 @@ const FormStyle = styled.form`
     }
 
     svg{
-        position: absolute; 
+        
         top: 50%;
         left: 0%;
         transform: translate(100%, -50%);
