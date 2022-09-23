@@ -3,6 +3,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {FaSearch} from 'react-icons/fa';
 
+//Creates the search bar that is used for finding recipes.
+
 function Search(){
 
     const [input, setInput] = useState("");
@@ -13,6 +15,8 @@ function Search(){
         navigator("/searched/" + input)
     }
 
+    // For Sprint 2 we may change the way this bar works, as there are limitations that we are finding by doing it this way,
+    // however more research is required.
     return (
         <FormStyle onSubmit={submitController}>
             <div>
@@ -22,6 +26,8 @@ function Search(){
         </FormStyle>
     )
 }
+
+// Sets up the display settings for the FormStyle, divs, inputs in a seperate area for tidier code.
 
 const FormStyle = styled.form`
     margin: 0rem 30rem;

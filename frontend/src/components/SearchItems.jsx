@@ -3,14 +3,14 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {FaSearch} from 'react-icons/fa';
 
-function Search(){
+function SearchItems(){
 
     const [input, setInput] = useState("");
     const navigator = useNavigate();
 
     const submitController = (e) => {
         e.preventDefault();
-        navigator("/searched/" + input)
+        navigator("/searcheditems/" + input)
     }
 
     return (
@@ -24,12 +24,12 @@ function Search(){
 }
 
 const FormStyle = styled.form`
-    margin: 0rem 30rem;
-    position: relative;
     
+    position: relative;
+    width: auto;
     div{
-        width: 100%;
-        position: relative; 
+        
+        position: center; 
     }
 
     input{
@@ -45,11 +45,11 @@ const FormStyle = styled.form`
     }
 
     svg{
-        position: absolute; 
+        
         top: 50%;
         left: 0%;
         transform: translate(100%, -50%);
         color: white; 
     }`
 
-export default Search;
+export default SearchItems;
