@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Container, Nav, Navbar, NavDropdown, Button, Modal, Form, Offcanvas, Row, Col } from 'react-bootstrap';
-//import { use } from '../../../backend/routes/api/account';
 import {Login} from "../js/Authentication/userAuthentication"; 
 
 function Menu() {
