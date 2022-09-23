@@ -6,7 +6,6 @@ import {getAuth} from "firebase/auth";
  function APP()
 {
     
-    alert(process.env.REACT_APP_API_KEY +"  "+process.env.REACT_APP_AUTH_DOMAIN +"  "+process.env.PROJECT_ID +"  "+process.env.CLIENT_ID);
    
     const firebaseConfig = 
     {
