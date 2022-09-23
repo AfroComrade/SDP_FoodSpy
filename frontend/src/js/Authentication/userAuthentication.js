@@ -3,7 +3,7 @@ import { getAuth, createUserWithEmailAndPassword,signInWithEmailAndPassword,send
 
 async function IsEmpty (Input){
     
-    if(Input.length === 0)
+    if(Input.length == 0)
     {
         return true;
     }
@@ -42,6 +42,12 @@ async function CheckUserName(UserName)
 
 //--------------------------------------------------------------------//
 
+/*
+
+    User Login Block
+
+*/
+
 
 export const Login  = async (EML,PWD)  => 
 {
@@ -56,22 +62,27 @@ export const Login  = async (EML,PWD)  =>
     {
 
             //const auth = ;        
-            const USR = await signInWithEmailAndPassword(SetUpUsers(),EML,PWD);
+            const USR = await signInWithEmailAndPassword(SetUpUsers(),EML,PWD)
+            .catch((error) =>
+            {
+               alert("RIncorrect email or password");
+             });;
             console.log(USR);
-            alert("User:" + EML + " is now logged in");
         
     } 
     catch (error) 
     {
-        console.log(error.message);
+        console(error.message);
+        alert("User:" + EML + " is now logged in");
     }
+}
 }
 
 
 /*
 
     Forgot Password Block
-    - 
+    - Sends reset link to user but does not show if email does not exist for security reasons
 
 */
 
@@ -90,11 +101,17 @@ export const  ForgotsPassword  = async (UserEmail)  =>
         {
             //Send out password reset email.
             alert("Reset password link has been sent");
-        });
+        }).catch((error) =>
+         {
+            console.log(error + " 1")
+            alert("Reset password link has been sent");
+          });
     } 
     catch (error) 
     {
-        console.log(error.code + "  "+ error.message);     
+        console.log(error + " 2")
+        alert("Reset password link has been sent");  
+          
     }
 }
 }
@@ -111,15 +128,15 @@ async function Signout()
 {
     try 
     {
-        /*Signout(Auth).then(() =>{
+        Signout(SetUpUsers()).then(() =>{
             /* 
                 Sign out successfull
                 exit out user
-            
+            */
             
         }).catch((error) =>{
             console.log(error.message)
-        });*/
+        });
     } 
     catch (error) 
     {
@@ -132,58 +149,36 @@ async function Signout()
 /*
 
     User Creation Block
-    - User is to be created with username, DOB, email, Password and confirm password params.
+    - User is to be created with username, email, Password and confirm password params.
     
 */
 
 
-async function UserCreate  (EML,PWD,CFPWD,USRName)
+export const  UserCreate = async (EML,PWD,CFPWD,USRName) =>
 {
-   if(CheckUserName(USRName) === false)
-   {
-        var ErrMsg = "Username is already taken";
-        alert(ErrMsg);
-   }
-   else
-   {
-   try {
-    if((IsEmpty(PWD) === false) && (IsEmpty(CFPWD) === false) &&(IsEmpty(EML) === false) && (IsEmpty(USRName) === false))
+    if(PasswordMatch(PWD,CFPWD))
     {
-        if(PasswordMatch(PWD,CFPWD) === false)
-        {
-            /*
-            //Create new Firebase user 
-            createUserWithEmailAndPassword(Auth,EML,PWD).then((userCredential) =>
-            {
-                const user = userCredential.user;
-                const ID = user.uid;
-                 //Firestore enter in new user
-                 //InputUserName(ID,USRName)
-
-            }).catch((error) => 
-            {
-                console.log(error.message);
-            });*/
-
-        }
-    }
-    else
+    if(IsEmpty(PWD) &&IsEmpty(CFPWD) && IsEmpty(EML) && IsEmpty(USRName))
     {   
-        var ErrMsg = "All fields must be filled in before creating a new account";
-        alert(ErrMsg);
+        
+        createUserWithEmailAndPassword(SetUpUsers(),EML,PWD).then((userCredential) =>
+    {
+        alert("New user created");
+    }).catch((error) => 
+    {
+        console.log(error.message);
+    });
     }
-   } catch (error) 
-   {
-        console.log(error.message); 
-   }
 }
-}
-
-
-async function InputUserName(ID,USRNAME)
+else
 {
-
+    alert("both passwords must match");
+}
+     
 }
 
 
 //--------------------------------------------------------------------//
+
+
+
