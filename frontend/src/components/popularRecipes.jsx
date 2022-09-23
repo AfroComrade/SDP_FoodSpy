@@ -4,8 +4,9 @@ import { Splide, SplideSlide } from "@splidejs/react-splide";
 import '@splidejs/react-splide/css';
 import {Link} from 'react-router-dom';
 
-// This component renders a random selection of recipes, with the intention of it becoming something that can be used to find specific types of recipes
-// eg. Breakfast, Lunch and Dinner options (whether this works or not will be discovered in Sprint 2)
+// This component renders a random selection of recipes, with the intention of it becoming something 
+// that can be used to find specific types of recipes eg. Breakfast, Lunch and Dinner options 
+// (whether this works or not will be discovered in Sprint 2)
 
 function Popular() {
     const[popular, setPopRecipe] = useState([]);

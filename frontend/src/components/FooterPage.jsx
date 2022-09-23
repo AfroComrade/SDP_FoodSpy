@@ -1,5 +1,8 @@
 import React from "react";
 
+// This component attaches to the bottom of every page that the user will go to, and is mainly used as a disclaimer to ensure users
+// know that the information obtained my not be up to date.
+
 function Footer(){
     return(
         <footer class="py-5 bg-dark">
