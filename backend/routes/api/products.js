@@ -79,6 +79,7 @@ router.use('/product/:id', (req, res) => {
 });
 
 router.use('/search/:id', (req, res) =>{
+    console.log("search", req.params.id)
     string = req.params.id;
     getMatches(res, string)
 });

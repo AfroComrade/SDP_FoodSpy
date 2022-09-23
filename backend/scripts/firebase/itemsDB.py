@@ -15,11 +15,11 @@ app = firebase_admin.initialize_app(cred, {
 db = firestore.client()
 doc_ref = db.collection(u'items')
 
-itemfile = open('items.txt', 'w')
+#itemfile = open('items.txt', 'w')
 
 
-csvreader = csv.reader('./dummydata/SampleDataFeed.csv')
-with open("./dummydata/SampleDataFeed.csv") as file:
+#csvreader = csv.reader('./SampleDataFeed.csv')
+with open("./SampleDataFeed.csv") as file:
     csvreader = csv.reader(file)
     counter = 0
     for row in csvreader:
@@ -35,13 +35,14 @@ with open("./dummydata/SampleDataFeed.csv") as file:
         data = {
             u'product': productName,
             u'price': row[3],
-            u'imageURL': row[5]
+            u'imageURL': row[5],
+            u'location': "countdown"
         }
         doc_ref.document(productName).set(data)
-        itemfile.write(productName + '\n')
-    itemfile.close()
+        #itemfile.write(productName + '\n')
+    #itemfile.close()
 
-itemSorter.sortProducts()
+#itemSorter.sortProducts()
 
 # connect to items firestore
 
