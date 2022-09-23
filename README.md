@@ -20,7 +20,7 @@ This is a Web App to search food items and locate the best prices on items. It a
 ## Setup
 Clone this repo to your desktop.
 
-Backend Installation:
+Frontend Installation:
  - cd to frontend folder
  - npm install to install node modules
  - npm start to run the react website
