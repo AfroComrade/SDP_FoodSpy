@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Container, Nav, Navbar, NavDropdown, Button, Modal, Form, Offcanvas, Row, Col } from 'react-bootstrap';
-import {Login} from "../js/Authentication/userAuthentication"; 
+
+// This component creates the NavBar, which can be accessed on all pages, and is used to be able to navigate between pages
+// bring up a popbox for the User to login, and a side window which includes the users shopping cart.
 
 function Menu() {
 
@@ -13,20 +15,6 @@ function Menu() {
   const [Email,SetEmail] = useState('');
   const [Password,SetPassword] = useState('');
 
-  //Good to go 
-
-  
-
-  const GoLogin = () =>
-  {
-    
-      try {
-        Login(Email,Password);
-      } catch (error) 
-      {
-        console.log(error); 
-      }
-  }
 
   return (
     <Navbar bg="dark" expand="lg" variant="dark">
@@ -98,7 +86,7 @@ function Menu() {
           
           </Col>
           <Col md="4">
-          <Button variant="primary" onClick={GoLogin}>
+          <Button variant="primary" onClick={handleClose}>
             Login
           </Button>
          
