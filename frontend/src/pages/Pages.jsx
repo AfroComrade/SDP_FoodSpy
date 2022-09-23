@@ -3,8 +3,8 @@ import {  Routes, Route } from "react-router-dom";
 import "../App.css";
 
 import Home from "./HomePage";
-import Footer from "./FooterPage";
-import NavBar from './NavBar';
+import Footer from "../components/FooterPage";
+import NavBar from '../components/NavBar';
 import About from './AboutPage';
 import SavedRecipes from './SavedRecipes';
 import RecipeDatabase from './RecipeDatabase';
@@ -15,6 +15,7 @@ import ForgotPassword from './ForgotPassword';
 import CreateAcc from './CreateAcc';
 import SearchedItems from './SearchPageItems';
 
+// This file creates the routes for the Navbar, allowing the user to navigate through the websites different pages.
 
 function Pages() {
   return (

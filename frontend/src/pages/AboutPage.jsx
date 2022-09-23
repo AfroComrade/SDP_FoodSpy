@@ -2,6 +2,9 @@ import React from "react";
 import '..//App.css';
 import logo from "../assets/FoodspyLogo.png"
 
+// This page contains details about the purpose of the website, and is essentially a double up of the content seen 
+// in the footer. 
+
 function About() {
   document.body.style.backgroundImage = 'url(https://images.pexels.com/photos/616403/pexels-photo-616403.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1)';
   document.body.style.backgroundRepeat = 'no-repeat';

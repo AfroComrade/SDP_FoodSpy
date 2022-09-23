@@ -27,7 +27,9 @@ function Searched(){
 
     // Generates the display, using searchedRecipes to map recipes to clickable cards, which will take the user to the Recipe page. 
     return (
-    <><div>
+    <><div style={{
+        paddingTop: '25px',
+    }}>
             <Search />
             <h3>Search Results</h3>
         </div><Grid>
