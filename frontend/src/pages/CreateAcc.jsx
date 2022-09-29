@@ -1,16 +1,28 @@
 import React from 'react';
-
+import {UserCreate} from '../js/Authentication/userAuthentication';
 import logo from "../assets/FoodspyLogo.png"
+import { useState } from "react";
 
 
 
 
  function CreateAcc() {
 
+    const [Password,SetPassword] = useState('');
+    const [ConfirmPassword,SetConfirmPassword] = useState('');
+    const [Email,SetEmail] = useState('');
+    const [UserName,SetUserName] = useState('');
+
     // doSomething = function (e) {
     //     alert('it works!');
     //     e.preventDefault();
     // }
+
+    const CreateUser = async() =>
+    {
+      //(EML,PWD,CFPWD,USRName)
+      UserCreate(Email,Password,ConfirmPassword,UserName);
+    }
 
     
     return(
@@ -51,12 +63,18 @@ import logo from "../assets/FoodspyLogo.png"
             <form class="form-signin needs-validation" novalidate oninput='confirmPassword.setCustomValidity(confirmPassword.value != newPassword.value ? true : false)'>
 
                 <div class="form-outline mb-4">
-                  <input type="text" id="form3Example1cg" class="form-control form-control-lg" placeholder="Name" required/>
+                  <input type="text" id="form3Example1cg"
+                  input = {UserName}
+                  onChange={(e) => SetUserName(e.target.value)}
+                   class="form-control form-control-lg" placeholder="Name" required/>
                   <label class="form-label" for="form3Example1cg">Your Name</label>
                 </div>
 
                 <div class="form-outline mb-4">
-                  <input type="email" id="form3Example3cg" class="form-control form-control-lg" placeholder="Email" required />
+                  <input type="email" id="form3Example3cg" 
+                  input = {Email}
+                  onChange={(e) => SetEmail(e.target.value)}
+                  class="form-control form-control-lg" placeholder="Email" required />
                   <label class="form-label" for="form3Example3cg">Your Email</label>
                 </div>
 
@@ -65,7 +83,10 @@ import logo from "../assets/FoodspyLogo.png"
           
           <div class="form-outline mb-4">
 
-            <input name="newPassword" type="password" autocomplete="off" class="form-control form-control-lg" id="newPassword" placeholder="New Password" aria-describedby="inputGroupPrepend" required />
+            <input name="newPassword" type="password" autocomplete="off" 
+             input = {Password}
+             onChange={(e) => SetPassword(e.target.value)}
+            class="form-control form-control-lg" id="newPassword" placeholder="New Password" aria-describedby="inputGroupPrepend" required />
             <label class="form-label" for="newPassword">New Password</label>
             <div class="invalid-feedback">
               Please enter new password.
@@ -78,7 +99,10 @@ import logo from "../assets/FoodspyLogo.png"
         
         <div class="form-outline mb-4">
 
-          <input name="confirmPassword" type="password" autocomplete="off" class="form-control form-control-lg" id="confirmPassword" placeholder="Confirm Password" aria-describedby="inputGroupPrepend" required />
+          <input name="confirmPassword" type="password" autocomplete="off" 
+          input = {ConfirmPassword}
+          onChange={(e) => SetConfirmPassword(e.target.value)}
+          class="form-control form-control-lg" id="confirmPassword" placeholder="Confirm Password" aria-describedby="inputGroupPrepend" required />
           <label class="sr-only" for="confirmPassword">Confirm Password</label>
           <div class="invalid-feedback">
             Password not a match.
@@ -94,7 +118,7 @@ import logo from "../assets/FoodspyLogo.png"
                 </div> */}
 
                 <div class="d-flex justify-content-center">
-                  <button id="submitBtn" type="submit"
+                  <button id="submitBtn" onClick={CreateUser}
                     class="btn btn-dark btn-block btn-lg ">Register</button>
                     
                 </div>

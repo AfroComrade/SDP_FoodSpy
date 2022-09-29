@@ -1,8 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
+import {ForgotsPassword} from "../js/Authentication/userAuthentication"; 
 
 
- function ForgotPassword() {
+ function ForgotPassword() 
+ {
+    const [Email,SetEmail] = useState('');
+    const ResettingPassword = async () =>
+    {
+        try {
+            ForgotsPassword(Email);
+          } catch (error) 
+          {
+            console.log(error); 
+          }
+    }
     return(
         <> 
         <div style={{
@@ -29,9 +41,11 @@ import { Form, Button } from 'react-bootstrap';
                     size = "lg"
                     type="email"
                     placeholder="Enter your email"
+                    input = {Email}
+                    onChange={(e) => SetEmail(e.target.value)}
                     className="me-2"
                     aria-label="Email" />
-                <Button variant="dark">Go</Button>    
+                <Button onClick={ResettingPassword} variant="dark">Go</Button>    
                 
                </Form>    
              
