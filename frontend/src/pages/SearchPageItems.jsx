@@ -19,7 +19,7 @@ function SearchedItems(){
         console.log("hello1");
         console.log(name);
         const data = await fetch(
-            `http://sdpfoodspy.herokuapp.com/api/products/search/${name}`
+            `https://sdpfoodspy.herokuapp.com/api/products/search/${name}`
         );
         const items = await data.json();
         setSearchedItems(items);
