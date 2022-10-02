@@ -1,7 +1,8 @@
-const connectDB = require('../config/db');
+const firebase = require('../config/db');
 var db = "";
-connectDB().then(res=>{db = res});
-
+var auth = "";
+firebase.firestore.then(res=>{db = res});
+firebase.fireauth.then(res=>{auth = res});
 
 async function getItem(table, product) {
     return await db.collection(table).doc(product).get()
