@@ -1,5 +1,4 @@
-const fs = require('firebase-admin');
-//const serviceAcc = require('./foodspy-39b75-firebase-adminsdk-xjs48-8714375f78.json');
+const fb = require('firebase-admin');
 const config = require('config');
 require('dotenv').config();
 
@@ -14,20 +13,37 @@ serviceAcc2.auth_uri = process.env.AUTH_URL;
 serviceAcc2.token_uri = process.env.TOKEN_URL;
 serviceAcc2.auth_provider_x509_cert_url = process.env.AUTH_PROVIDER_X509_CERT_URL;
 serviceAcc2.client_x509_cert_url = process.env.CLIENT_X509_CERT_URL;
-//var serviceAcc = JSON.stringify(serviceAcc2);
-//serviceAcc = serviceAcc.replaceAll("\\\\n", '\n');
-//serviceAcc = serviceAcc.replaceAll("'+", '');
 
-//console.log(serviceAcc);
-//console.log(serviceAcc2);
+init = false;
 
-async function connectDB() {
-    fs.initializeApp({
-        credential: fs.credential.cert(serviceAcc2)
-    });
-    const db = fs.firestore()
-    console.log('firestore connected');
-    return db;
+async function connectFB() {
+    if (!init)
+    {
+        fb.initializeApp({
+            credential: fb.credential.cert(serviceAcc2)
+        });
+        init = true;
+    }
+    console.log('firebase initialized');
 }
 
-module.exports = connectDB;
+async function connectDB() {
+    connectFB();
+    const db = fb.firestore();
+    console.log('firestore connected');
+    return db
+}
+
+async function connectAuth()
+{
+    connectFB();
+    const auth = fb.auth();
+    console.log("firebase auth connected");
+    return auth;
+}
+
+module.exports = 
+{
+    firestore: connectDB(),
+    fireauth: connectAuth(),
+}
