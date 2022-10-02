@@ -11,8 +11,6 @@ import { useParams } from "react-router-dom";
 // right now are not impeding progress, and may be a stretch thing to try and address during Sprint 2.
 
 function Recipe(){
-    // Sets the background colour of the webpage to brown (This may change, just trying different ideas of formatting)
-    document.body.style.background = "#A5A692";
 
     let params = useParams();
     const [details, setDetails] = useState({});
@@ -98,6 +96,9 @@ const DetailWrapper = styled.div`
     }
     ul {
         margin-top: 2rem;
+        background-color: #A5A692;
+    }
+    p {
         background-color: #A5A692;
     }
 `;

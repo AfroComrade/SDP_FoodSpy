@@ -16,6 +16,7 @@
     "prepare-react": "cd frontend && npm install",
     "build": "cd backend && npm run app",
     "build-react": "cd frontend && npm run build",
+    "test-react": "cd frontend && npm run test",
     "heroku-postbuild": "npm run prepare-backend && npm run prepare-react && npm run build-react"
   },
   "repository": {
