@@ -2,6 +2,8 @@ import React, {useEffect, useState}  from "react";
 import {useParams} from 'react-router-dom';
 import styled from "styled-components";
 import SearchItems from "../components/SearchItems";
+import Card from 'react-bootstrap/Card';
+import ListGroup from 'react-bootstrap/ListGroup';
 
 
 
@@ -31,29 +33,52 @@ function SearchedItems(){
         console.log(params.searchitems);
     },[params.searchitems]);
 
+    if(searchedItems.length > 0)
+                    {
+                       
     return (
     <><div
         style={{
                 paddingTop: '100px',
-                paddingBottom: '100px',
+                paddingBottom: '50px',
+                paddingLeft: '100px',
+                paddingRight: '100px'
                 
         }}>
             <SearchItems />
-        </div><Grid>
+        </div><Grid style={{
+                paddingTop: '50px',
+                paddingBottom: '50px',
+                paddingLeft: '100px',
+                paddingRight: '100px'
+                
+        }}>
+            
                 {searchedItems.map((items) => {
+                    
+                    
                     return (
-                        <Card key={items.product}>
+                        <Card border="dark" key={items.product}  style={{ width: '18rem', borderWidth: '2px' }}>
                             
-                            <img src={items.imageURL} alt={items.product} />
-                            <h4>{items.product}</h4>
-                            <h4>${items.price}</h4>
-                            <h4>{items.location}</h4>
-                            
+                            <Card.Img src={items.imageURL} alt={items.product} />
+                            <Card.Body>
+                            <Card.Title>{items.product}</Card.Title>
+                            <Card.Text style={{fontSize: '1.6rem', color: '#A72608', fontWeight: "bold", textAlign: "right" }}>${items.price}</Card.Text>
+                            </Card.Body>
+                            <ListGroup className="list-group-flush">
+                            <ListGroup.Item>{items.location}</ListGroup.Item>
+                            </ListGroup>
                         </Card>
                     );
+
                 })}
             </Grid></>
-    );
+    );}
+    else{
+        return(
+        <h4>Item not found</h4>
+        )
+    }
 }
 
 const Grid = styled.div`
@@ -63,18 +88,5 @@ const Grid = styled.div`
     grid-gap: 3rem;
 `;
 
-const Card = styled.div`
-    img{
-        width: 100%;
-        border-radius: 2rem;
-    }
-    a{
-        text-decoration: none;
-    }
-    h4 {
-        text-align: center;
-        padding: 1rem;
-        color: black;
-    }`;
 
 export default SearchedItems;

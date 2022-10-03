@@ -3,13 +3,15 @@ import {useParams} from 'react-router-dom';
 import styled from "styled-components";
 import Search from "../components/SearchRecipe";
 import {Link} from 'react-router-dom';
+import RecipeError from "../components/RecipeError";
 
 //This page renders the Search Results from the SearchRecipe Functions
 function Searched(){ 
-
+    
     const [searchedRecipes, setSearchedRecipes] = useState([]);
     let params = useParams();
 
+    try{
 
     // uses the API to find recipes including the name passed through (eg. Steak, Apples etc.)
     const getSearched = async (name) => {
@@ -46,6 +48,10 @@ function Searched(){
                 })}
             </Grid></>
     );
+            }
+            catch{
+                <RecipeError />
+            }
 }
 
 // Generates the display settings for Grid, Card, imgs, headings etc.
