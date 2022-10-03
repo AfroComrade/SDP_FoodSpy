@@ -48,7 +48,7 @@ function Menu() {
           </Nav>
       <Nav>
         <Button variant="outline-light" onClick={handleShow}>
-        <span className="badge bg-dark text-white ms-0 rounded-pill"><i class="bi bi-person"> 
+        <span className="badge bg-dark text-white ms-0 rounded-pill"><i className="bi bi-person"> 
                 </i> </span> Account</Button>{' '}
         </Nav>
         <Modal show={modalShow} onHide={handleClose}>
