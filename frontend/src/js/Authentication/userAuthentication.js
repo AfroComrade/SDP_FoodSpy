@@ -53,7 +53,7 @@ export const Login  = async (EML,PWD)  =>
 {
     if((IsEmpty(EML) === true) || (IsEmpty(PWD) === true))
    {
-        alert("Please enter an email address  and password");
+        alert("Please enter an email address and password");
    }
    else
    {
@@ -65,7 +65,7 @@ export const Login  = async (EML,PWD)  =>
             const USR = await signInWithEmailAndPassword(SetUpUsers(),EML,PWD)
             .catch((error) =>
             {
-               alert("RIncorrect email or password");
+               alert("Incorrect email or password");
              });;
             console.log(USR);
         
