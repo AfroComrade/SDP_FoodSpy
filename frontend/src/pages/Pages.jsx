@@ -8,7 +8,7 @@ import NavBar from '../components/NavBar';
 import About from './AboutPage';
 import SavedRecipes from './SavedRecipes';
 import RecipeDatabase from './RecipeDatabase';
-import AddRecipe from './AddRecipe';
+import RecipeDiet from './RecipeDiet';
 import Recipe from './Recipe';
 import Searched from './SearchPage';
 import ForgotPassword from './ForgotPassword';
@@ -26,7 +26,7 @@ function Pages() {
         <Route path="/about" element={<About />}/>
         <Route path="/recipes_saved" element={<SavedRecipes />}/>
         <Route path="/recipes_database" element={<RecipeDatabase/>}/>
-        <Route path="/recipes_add" element={<AddRecipe/>}/>
+        <Route path="/recipes_diet" element={<RecipeDiet/>}/>
         <Route path="/recipe/:name" element={<Recipe />}/>
         <Route path="/searched/:search" element={<Searched />}/>
         <Route path="/searcheditems/:searchitems" element={<SearchedItems />}/>

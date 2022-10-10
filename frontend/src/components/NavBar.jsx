@@ -43,7 +43,7 @@ function Menu() {
               <NavDropdown.Item href="/recipes_saved">Saved Recipes</NavDropdown.Item>
               <NavDropdown.Item href="/recipes_database">Recipes Database</NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item href="/recipes_add">Add Recipes</NavDropdown.Item>
+              <NavDropdown.Item href="/recipes_add">Recipes by Diet</NavDropdown.Item>
             </NavDropdown>
           </Nav>
       <Nav>
