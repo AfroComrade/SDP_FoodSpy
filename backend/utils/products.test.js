@@ -14,11 +14,26 @@ async function testCall(url) {
             {
                 console.log("Api call successful");
             }
+    }).catch((error) => {
+        if (url === url2)
+        {
+            console.log("intentional fail!");
+        }
+        else
+        {
+            console.log("axios error");
+            console.log(error);
+            console.assert(false);
+        }
     })
     } catch (error) {
-        assert.isNotOk(error, 'Error');
+        //assert.isNotOk(error, 'Error');
+        console.log(error);
+        console.assert(false);
     }
 }
 
 testCall(url1);
-//testCall(url2);
+testCall(url2);
+
+console.log("Pass and fail went through correctly!");
