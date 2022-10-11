@@ -36,6 +36,9 @@ async function assertCheck(url, expectedResponse) {
         console.log(expectedResponse)
         if (expectedResponse !== successful)
         {
+            console.log("expected response vs successful response incorrect!");
+            console.log(expectedResponse);
+            console.log(successful);
             throw "unit test failed!";
         }
         return;
@@ -46,6 +49,4 @@ async function assertCheck(url, expectedResponse) {
     })
 }
 
-//assertCheck(url1, false).then(assertCheck(url2, true));
-assertCheck(url1, true);
-//;
+assertCheck(url1, false).then(assertCheck(url2, true));
