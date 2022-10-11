@@ -30,3 +30,4 @@
 backend/scripts/firebase/SampleDataFeed.csv
 backend/scripts/scraper/__pycache__/ScraperCommit.cpython-310.pyc
 backend/scripts/scraper/cookies.pkl
+backend/package-lock.json

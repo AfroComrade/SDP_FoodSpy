@@ -1,4 +1,5 @@
 const axios = require('axios');
+const core = require('@actions/core');
 
 url1 = "http://sdpfodspy.herokuapp.com/api/products/product/Ace%20Gloves%20Small";
 url2 = "http://sdpfoodspy.herokuapp.com/api/products/product/Ace%20Gloves%20Small";
@@ -22,14 +23,8 @@ async function testCall(url) {
         }
     })
     } catch (error) {
-        //assert.isNotOk(error, 'Error');
-        //console.log(error);
         console.log("Outer loop failed");
     }
-
-        //Promise.resolve(promise).then(() => {
-        //return successful;
-    //});
 }
 
 //const succeeded = testCall(url1);
@@ -39,8 +34,15 @@ async function assertCheck(url, expectedResponse) {
     testCall(url).then(() => {
         console.log(successful);
         console.log(expectedResponse)
-        console.assert(expectedResponse === successful);
+        if (expectedResponse !== successful)
+        {
+            throw "unit test failed!";
+        }
         return;
+    })
+    .catch((e) =>
+    {
+        core.setFailed(e);
     })
 }
 
