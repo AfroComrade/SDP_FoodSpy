@@ -6,40 +6,31 @@ url2 = "http://sdpfoodspy.herokuapp.com/api/products/product/Ace%20Gloves%20Smal
 url3 = "http://sdpfoodspy.herokuapp.com/api/products/product/Ace%20Gloves%20Smal";
 let successful;
 
-async function testCall(url) {
-    successful = false
-    try {
-        promise = await axios.get(url)
-        .then(res => {
-            data = res.data;
-            successful = false;
-            console.assert(data.imageURL === 'https://assets.woolworths.com.au/images/2010/671469.jpg?impolicy=wowcdxwbjbx&w=1200&h=1200');
-            if (data.product === 'Ace Gloves Small')
-            {
-                successful = true;
-            }
-    }).catch((error) => {
-        {
-            if (url !== url1)
-            {
-                console.log("error for " + url);
-                console.log(error);
-            }
-        }
-    })
-    } catch (error) {
-        console.log("Outer loop failed");
-        console.log(error);
-    }
+
+function main() {
+    checkURLSucceeds(url1, "", false)
+    .then(checkURLSucceeds(url2, "Ace Gloves Small", true)
+    .then(checkURLSucceeds(url2, "Ace Gloves Smal", false))
+    .then(checkURLSucceeds(url3, "", false)));
 }
 
-//const succeeded = testCall(url1);
+async function checkURLSucceeds(url, itemExpected, expectSuccess) {
+    console.log("testing url: " + url);
+    callLiveProductAPI(url, itemExpected).then(() => {
+        compareExpectedVsActualResponse(url, expectSuccess);
+    })
+    .catch((e) =>
+    {
+        // Fail github action
+        core.setFailed(e);
+        return;
+    })
+}
 
-async function assertCheck(url, expectedResponse) {
-    console.log("testing " + url);
-    testCall(url).then(() => {
-        if (expectedResponse !== successful)
+function compareExpectedVsActualResponse(url, expectSuccess) {
+    if (expectSuccess !== successful)
         {
+            // Github action logging
             console.log("expected response vs successful response incorrect!");
             console.log(url);
             console.log(expectedResponse);
@@ -47,15 +38,43 @@ async function assertCheck(url, expectedResponse) {
             throw "unit test failed!";
         }
         return;
-    })
-    .catch((e) =>
-    {
-        core.setFailed(e);
-        return;
-    })
 }
 
-assertCheck(url1, false)
-.then(assertCheck(url2, true)
-.then(assertCheck(url3, false))
-.then(console.log("product tests completed")));
+async function callLiveProductAPI(url, itemExpected) {
+    successful = false
+    try {
+        promise = await axios.get(url)
+        .then(res => 
+            {
+            checkDataIsCorrect(res.data, itemExpected);
+        })
+        .catch((error) => 
+        {
+        {
+            handleError(url, error);
+        }
+    })} 
+    catch (error) 
+    {
+        handleError(url, error);
+    }
+}
+
+function checkDataIsCorrect(data, itemExpected) {
+    successful = false;
+    console.assert(data.imageURL === 'https://assets.woolworths.com.au/images/2010/671469.jpg?impolicy=wowcdxwbjbx&w=1200&h=1200');
+    if (data.product === itemExpected)
+    {
+        successful = true;
+    }
+}
+
+function handleError(url, error) {
+    if (url !== url1)
+    {
+        console.log("error for " + url);
+        console.log(error);
+    }
+}
+
+main();
