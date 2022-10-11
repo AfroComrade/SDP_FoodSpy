@@ -20,10 +20,12 @@ async function testCall(url) {
     }).catch((error) => {
         {
             console.log("axios error");
+            console.log(error);
         }
     })
     } catch (error) {
         console.log("Outer loop failed");
+        console.log(error);
     }
 }
 
