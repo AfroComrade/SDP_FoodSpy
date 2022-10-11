@@ -2,38 +2,48 @@ const axios = require('axios');
 
 url1 = "http://sdpfodspy.herokuapp.com/api/products/product/Ace%20Gloves%20Small";
 url2 = "http://sdpfoodspy.herokuapp.com/api/products/product/Ace%20Gloves%20Small";
+let successful;
 
 async function testCall(url) {
+    let promise;
+    successful = false
     try {
-        axios.get(
-            url)
+        promise = await axios.get(url)
         .then(res => {
             data = res.data;
             console.assert(data.imageURL === 'https://assets.woolworths.com.au/images/2010/671469.jpg?impolicy=wowcdxwbjbx&w=1200&h=1200');
-            if (data.product !== 'Ace Gloves Smal')
+            if (data.product === 'Ace Gloves Small')
             {
-                console.log("Api call successful");
+                successful = true;
             }
     }).catch((error) => {
-        if (url === url2)
-        {
-            console.log("intentional fail!");
-        }
-        else
         {
             console.log("axios error");
-            console.log(error);
-            console.assert(false);
         }
     })
     } catch (error) {
         //assert.isNotOk(error, 'Error');
-        console.log(error);
-        console.assert(false);
+        //console.log(error);
+        console.log("Outer loop failed");
     }
+
+        //Promise.resolve(promise).then(() => {
+        //return successful;
+    //});
 }
 
-testCall(url1);
-testCall(url2);
+//const succeeded = testCall(url1);
 
-console.log("Pass and fail went through correctly!");
+async function assertCheck(url, expectedResponse) {
+    console.log("testing " + url);
+    testCall(url).then(() => {
+        console.log(successful);
+        console.log(expectedResponse)
+        console.assert(expectedResponse === successful);
+        return;
+    })
+}
+
+//assertCheck(url1, false).then(assertCheck(url2, true));
+assertCheck(url1, true);
+//;
