@@ -55,4 +55,7 @@ async function assertCheck(url, expectedResponse) {
     })
 }
 
-assertCheck(url1, false).then(assertCheck(url2, true).then(assertCheck(url3, false)));
+assertCheck(url1, false)
+.then(assertCheck(url2, true)
+.then(assertCheck(url3, false))
+.then(console.log("product tests completed")));
