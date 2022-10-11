@@ -3,15 +3,16 @@ const core = require('@actions/core');
 
 url1 = "http://sdpfodspy.herokuapp.com/api/products/product/Ace%20Gloves%20Small";
 url2 = "http://sdpfoodspy.herokuapp.com/api/products/product/Ace%20Gloves%20Small";
+url3 = "http://sdpfoodspy.herokuapp.com/api/products/product/Ace%20Gloves%20Smal";
 let successful;
 
 async function testCall(url) {
-    let promise;
     successful = false
     try {
         promise = await axios.get(url)
         .then(res => {
             data = res.data;
+            successful = false;
             console.assert(data.imageURL === 'https://assets.woolworths.com.au/images/2010/671469.jpg?impolicy=wowcdxwbjbx&w=1200&h=1200');
             if (data.product === 'Ace Gloves Small')
             {
@@ -19,8 +20,11 @@ async function testCall(url) {
             }
     }).catch((error) => {
         {
-            console.log("axios error");
-            console.log(error);
+            if (url !== url1)
+            {
+                console.log("error for " + url);
+                console.log(error);
+            }
         }
     })
     } catch (error) {
@@ -34,11 +38,10 @@ async function testCall(url) {
 async function assertCheck(url, expectedResponse) {
     console.log("testing " + url);
     testCall(url).then(() => {
-        console.log(successful);
-        console.log(expectedResponse)
         if (expectedResponse !== successful)
         {
             console.log("expected response vs successful response incorrect!");
+            console.log(url);
             console.log(expectedResponse);
             console.log(successful);
             throw "unit test failed!";
@@ -48,7 +51,8 @@ async function assertCheck(url, expectedResponse) {
     .catch((e) =>
     {
         core.setFailed(e);
+        return;
     })
 }
 
-assertCheck(url1, false).then(assertCheck(url2, true));
+assertCheck(url1, false).then(assertCheck(url2, true).then(assertCheck(url3, false)));
