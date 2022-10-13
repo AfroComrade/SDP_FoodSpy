@@ -43,7 +43,7 @@ function compareExpectedVsActualResponse(url, expectSuccess) {
 async function callLiveProductAPI(url, itemExpected) {
     successful = false
     try {
-        promise = await axios.get(url)
+        await axios.get(url)
         .then(res => 
             {
             checkDataIsCorrect(res.data, itemExpected);
@@ -62,7 +62,6 @@ async function callLiveProductAPI(url, itemExpected) {
 
 function checkDataIsCorrect(data, itemExpected) {
     successful = false;
-    console.assert(data.imageURL === 'https://assets.woolworths.com.au/images/2010/671469.jpg?impolicy=wowcdxwbjbx&w=1200&h=1200');
     if (data.product === itemExpected)
     {
         successful = true;
