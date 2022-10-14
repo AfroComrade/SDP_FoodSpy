@@ -4,8 +4,7 @@ import styled from "styled-components";
 import SearchItems from "../components/SearchItems";
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
-
-
+import { Button } from "react-bootstrap";
 
 function SearchedItems(){ 
     document.body.style.backgroundImage = '';
@@ -20,6 +19,7 @@ function SearchedItems(){
     const getSearchedItems = async (name) => {
         console.log("hello1");
         console.log(name);
+ 
         const data = await fetch(
             `https://sdpfoodspy.herokuapp.com/api/products/search/${name}`
         );
@@ -32,6 +32,7 @@ function SearchedItems(){
         getSearchedItems(params.searchitems);
         console.log(params.searchitems);
     },[params.searchitems]);
+
 
     if(searchedItems.length > 0)
                     {
@@ -76,10 +77,25 @@ function SearchedItems(){
     );}
     else{
         return(
-        <h4>Item not found</h4>
+            <div style={{
+                paddingTop: '300px',
+                paddingBottom: '350px',
+                paddingLeft: '100px',
+                paddingRight: '100px',
+                textAlign: "center"
+                
+        }}>
+        <h2 style={{
+                paddingBottom: '50px'
+                
+        }}>Item "{params.searchitems}" not found</h2>
+        <Button variant="dark" size="lg" href="/" >Back to Search</Button>
+        </div>
         )
-    }
+    };
 }
+
+
 
 const Grid = styled.div`
     display: grid;

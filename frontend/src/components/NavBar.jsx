@@ -23,7 +23,7 @@ function Menu() {
 
 
   return (
-    <Navbar bg="dark" expand="lg" variant="dark">
+    <Navbar sticky='top' className="bg-dark shadow-sm" expand="lg" variant="dark" >
       <Container>
         <Navbar.Brand href="/">
         <img
@@ -114,7 +114,7 @@ function Menu() {
                 </Button>{' '}
                 <Offcanvas show={offcanvasShow} onHide={toggleClose} placement={"end"}>
         <Offcanvas.Header closeButton>
-          <Offcanvas.Title>Offcanvas</Offcanvas.Title>
+          <Offcanvas.Title>Cart</Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
           Some text as placeholder. In real life you can have the elements you
