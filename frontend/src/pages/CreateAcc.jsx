@@ -60,51 +60,51 @@ import { useState } from "react";
         }}>
             
 
-            <form class="form-signin needs-validation" novalidate oninput='confirmPassword.setCustomValidity(confirmPassword.value != newPassword.value ? true : false)'>
+            <form className="form-signin needs-validation" novalidate oninput='confirmPassword.setCustomValidity(confirmPassword.value != newPassword.value ? true : false)'>
 
-                <div class="form-outline mb-4">
+                <div className="form-outline mb-4">
                   <input type="text" id="form3Example1cg"
                   input = {UserName}
                   onChange={(e) => SetUserName(e.target.value)}
-                   class="form-control form-control-lg" placeholder="Name" required/>
+                  className="form-control form-control-lg" placeholder="Name" required/>
                   <label class="form-label" for="form3Example1cg">Your Name</label>
                 </div>
 
-                <div class="form-outline mb-4">
+                <div className="form-outline mb-4">
                   <input type="email" id="form3Example3cg" 
                   input = {Email}
                   onChange={(e) => SetEmail(e.target.value)}
-                  class="form-control form-control-lg" placeholder="Email" required />
-                  <label class="form-label" for="form3Example3cg">Your Email</label>
+                  className="form-control form-control-lg" placeholder="Email" required />
+                  <label className="form-label" for="form3Example3cg">Your Email</label>
                 </div>
 
-                <div class="form-group">
-        <div class="form-group">
+                <div className="form-group">
+        <div className="form-group">
           
-          <div class="form-outline mb-4">
+          <div className="form-outline mb-4">
 
             <input name="newPassword" type="password" autocomplete="off" 
              input = {Password}
              onChange={(e) => SetPassword(e.target.value)}
-            class="form-control form-control-lg" id="newPassword" placeholder="New Password" aria-describedby="inputGroupPrepend" required />
-            <label class="form-label" for="newPassword">New Password</label>
-            <div class="invalid-feedback">
+             className="form-control form-control-lg" id="newPassword" placeholder="New Password" aria-describedby="inputGroupPrepend" required />
+            <label className="form-label" for="newPassword">New Password</label>
+            <div className="invalid-feedback">
               Please enter new password.
             </div>
             
           </div>
         </div>
       </div>
-      <div class="form-group">
+      <div className="form-group">
         
-        <div class="form-outline mb-4">
+        <div className="form-outline mb-4">
 
           <input name="confirmPassword" type="password" autocomplete="off" 
           input = {ConfirmPassword}
           onChange={(e) => SetConfirmPassword(e.target.value)}
-          class="form-control form-control-lg" id="confirmPassword" placeholder="Confirm Password" aria-describedby="inputGroupPrepend" required />
-          <label class="sr-only" for="confirmPassword">Confirm Password</label>
-          <div class="invalid-feedback">
+          className="form-control form-control-lg" id="confirmPassword" placeholder="Confirm Password" aria-describedby="inputGroupPrepend" required />
+          <label className="sr-only" for="confirmPassword">Confirm Password</label>
+          <div className="invalid-feedback">
             Password not a match.
           </div>
         </div>
@@ -117,9 +117,9 @@ import { useState } from "react";
                   </label>
                 </div> */}
 
-                <div class="d-flex justify-content-center">
+                <div className="d-flex justify-content-center">
                   <button id="submitBtn" onClick={CreateUser}
-                    class="btn btn-dark btn-block btn-lg ">Register</button>
+                    className="btn btn-dark btn-block btn-lg ">Register</button>
                     
                 </div>
 
