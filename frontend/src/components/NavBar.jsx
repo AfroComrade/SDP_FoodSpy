@@ -41,18 +41,15 @@ function Menu() {
             <Nav.Link href="/about">About</Nav.Link>
             <NavDropdown title="Recipes" id="basic-nav-dropdown">
               <NavDropdown.Item href="/recipes_saved">Saved Recipes</NavDropdown.Item>
-              <NavDropdown.Item href="/recipes_database">
-              Recipes Database
-              </NavDropdown.Item>
+              <NavDropdown.Item href="/recipes_database">Recipes Database</NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item href="/recipes_add">
-              Add Recipes
-              </NavDropdown.Item>
+              <NavDropdown.Item href="/recipes_choose_cuisine">Recipes by Cuisine</NavDropdown.Item>
+              <NavDropdown.Item href="/recipes_choose_diet">Recipes by Dietary Requirements</NavDropdown.Item>
             </NavDropdown>
           </Nav>
       <Nav>
         <Button variant="outline-light" onClick={handleShow}>
-        <span class="badge bg-dark text-white ms-0 rounded-pill"><i class="bi bi-person"> 
+        <span className="badge bg-dark text-white ms-0 rounded-pill"><i className="bi bi-person"> 
                 </i> </span> Account</Button>{' '}
         </Nav>
         <Modal show={modalShow} onHide={handleClose}>
@@ -87,7 +84,7 @@ function Menu() {
           <Container>
           <Row >
             <Col >
-            <a href="/create_account" class="btn btn-warning active" role="button" aria-pressed="true">Create Account</a>
+            <a href="/create_account" className="btn btn-warning active" role="button" aria-pressed="true">Create Account</a>
             
           
           </Col>
@@ -112,8 +109,8 @@ function Menu() {
           <Nav style={{
                 paddingLeft: '10px'}}>        
         <Button variant="outline-light" onClick={toggleShow}>
-            <i class="bi bi-cart3"></i> Cart
-            <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+            <i className="bi bi-cart3"></i> Cart
+            <span className="badge bg-dark text-white ms-1 rounded-pill">0</span>
                 </Button>{' '}
                 <Offcanvas show={offcanvasShow} onHide={toggleClose} placement={"end"}>
         <Offcanvas.Header closeButton>

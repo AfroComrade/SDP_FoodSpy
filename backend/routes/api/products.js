@@ -70,7 +70,7 @@ router.use('/test', (req, res) => res.send('product route test'));
 
 router.use('/product/:id', (req, res) => {
     console.log(req.params.id);
-    firestore.getItem(req.params.id)
+    firestore('items', req.params.id)
     .then(data => {res.send(data)})
     .catch(err=> {
         console.log(err);
