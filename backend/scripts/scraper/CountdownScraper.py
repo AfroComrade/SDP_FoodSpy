@@ -24,19 +24,24 @@ def initializeDriver(url):
     options.add_argument('--disable-gpu')
     options.add_argument('--user-agent=Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36')
     driver = webdriver.Chrome(ChromeDriverManager().install(), options=options)
+
+
     driver.get(url)
+
     time.sleep(1)
     
     # ~~~ Use this if you need to save and use cookies ~~~
-    #cookies = pickle.load(open("./cookies.pkl", "rb"))
-    #for cookie in cookies:
-    #    driver.add_cookie(cookie)
+    cookies = pickle.load(open("./cookies.pkl", "rb"))
+    for cookie in cookies:
+        driver.add_cookie(cookie)
+
 
     return driver
 
 # Go through a web page source, find the items, add details to an array of dicts, return for processing & committing
-def scraper(page_source):
+def scrapeForItems(page_source):
     soup = BeautifulSoup(page_source, 'lxml')
+    item_location = soup.find('span', class_='fs-selected-store__name').get_text()
     items = []
     items_selector = soup.find_all('div', class_='fs-product-card')
     for item_selector in items_selector:
@@ -56,9 +61,8 @@ def scraper(page_source):
         item_name = item_name.replace("\n","")
         item_name = item_name.replace("/","")
         item_price = str(item_dollar_price) + "." + str(item_cent_price)
-        item_location = "paknsave"
 
-        product = dict({"product": item_name, "price": item_price, "imageURL": item_imageURL, "location": item_location})
+        product = dict({"product": item_name, item_location: item_price, "imageURL": item_imageURL})
         items.append(product)
     return items
 
@@ -77,7 +81,7 @@ def loopPages(url):
     URL = url
     while (check):
         driver = initializeDriver(URL)
-        items = scraper(driver.page_source)
+        items = scrapeForItems(driver.page_source)
         print("committing " + URL)
         commitItems(items)
         check = getNextPage2(driver.page_source)
@@ -117,10 +121,11 @@ def commitItems(items):
 
 
 # main
-ScraperCommit.firebaseInitialize()
-file = open('./paknsave.txt', 'r')
-paknsaveURLS = file.readlines()
-file.close()
-items = []
-for line in paknsaveURLS:
-    items = loopPages(line[:len(line)-1])
+def main():
+    ScraperCommit.firebaseInitialize()
+    file = open('./paknsave.txt', 'r')
+    paknsaveURLS = file.readlines()
+    file.close()
+    items = []
+    for line in paknsaveURLS:
+        items = loopPages(line[:len(line)-1])

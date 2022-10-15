@@ -10,6 +10,8 @@
 /backend/scripts/firebase/dummydata
 /backend/scripts/firebase/__pycache__
 /backend/.env
+/backend/scripts/scraper/__pycache__
+/backend/package-lock.json
 
 # testing
 /frontend/coverage
