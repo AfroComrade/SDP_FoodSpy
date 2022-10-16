@@ -40,14 +40,15 @@ def LoopThroughCategories(incomingUrl, storeID):
         randSleep()
         
         #get the items
+        pageInfo = driver.page_source
         print(url)
-        items = CountdownScraper.scrapeForItems(driver.page_source)
+        items = CountdownScraper.scrapeForItems(pageInfo)
+        for item in items:
+            print(item)
         print("committing " + url)
-        #for item in items:
-        #    print(item)
         CountdownScraper.commitItems(items)
         
-        check = CountdownScraper.getNextPage2(driver.page_source)
+        check = CountdownScraper.getNextPage2(pageInfo)
         driver.quit()
         counter += 1
 
