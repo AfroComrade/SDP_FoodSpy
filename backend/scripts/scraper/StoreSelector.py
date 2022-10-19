@@ -11,7 +11,8 @@ import random
 #storeId=b2e98a14-c8ca-401e-99ed-edf74570c6f6&clickSource=list
 #storeId=e1925ea7-01bc-4358-ae7c-c6502da5ab12&clickSource=list
 
-apiURL = "https://www.paknsave.co.nz/CommonApi/Store/ChangeStore?storeId="
+PNSapiURL = "https://www.paknsave.co.nz/CommonApi/Store/ChangeStore?storeId="
+NWapiURL = "https://www.newworld.co.nz/CommonApi/Store/ChangeStore?storeId=b7fe0c9e-24e9-46f2-a59a-95dce1725b06"
 
 urlstoreID1 = "https://www.paknsave.co.nz/CommonApi/Store/ChangeStore?storeId=b2e98a14-c8ca-401e-99ed-edf74570c6f6&clickSource=list"
 urlPage = "https://www.paknsave.co.nz/shop/category/fresh-foods-and-bakery"
