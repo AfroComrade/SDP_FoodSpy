@@ -143,7 +143,7 @@ def PNSscrapeForItems(page_source):
 
         item_imageURL = item_selector.find('div', class_="fs-product-card__product-image")['data-src-s']
         
-        item_name = item_selector.find('a')
+        item_name = item_selector.find('a', class_="fs-product-card__details")
         item_name = item_name['aria-label']
         item_name = item_name.replace("\n","")
         item_name = item_name.replace("/","")
