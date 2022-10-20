@@ -13,7 +13,7 @@ from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
 #We only need pickle if we need cookies
 import pickle
-import threading
+#import threading
 
 
 # Open the web page with various options
@@ -26,16 +26,23 @@ def initializeDriver(url):
     options.add_argument('--user-agent=Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36')
     driver = webdriver.Chrome(ChromeDriverManager().install(), options=options)
 
-
     driver.get(url)
     
     # ~~~ Use this if you need to save and use cookies ~~~
+    #loadPickle(driver)
+
+    return driver
+
+def loadPickle(driver):
     cookies = pickle.load(open("./cookies.pkl", "rb"))
     for cookie in cookies:
         driver.add_cookie(cookie)
 
+def getPickle(url):
+    driver = initializeDriver(url)
+    pickle.dump( driver.get_cookies(), open("cookies.pkl", "wb"))
+    driver.quit()
 
-    return driver
 
 def NWscrapeForItems(page_source):
     soup = BeautifulSoup(page_source, 'lxml')
@@ -71,7 +78,7 @@ def loopPages(url):
     URL = url
     while (check):
         driver = initializeDriver(URL)
-        items = PNSscrapeForItems(driver.page_source)
+        items = NWscrapeForItems(driver.page_source)
         print("committing " + URL)
         commitItems(items)
         check = getNextPage2(driver.page_source)
@@ -82,47 +89,43 @@ def loopPages(url):
         time.sleep(3)
     return items
 
-def urlTask(url, lock):
-    items = []
-    counter = 2
-    check = True
-    URL = url
-    while (check):
-        lock.acquire()
-        driver = initializeDriver(URL)
-        time.sleep(5)
-        lock.release()
-        items = NWscrapeForItems(driver.page_source)
-        print("committing " + URL)
-        lock.acquire()
-        for item in items:
-            print(item)
-        time.sleep(2)
-        #commitItems(items)
-        lock.release()
-        check = getNextPage2(driver.page_source)
-        driver.quit()
-        URL = url
-        URL += "?pg=" + str(counter)
-        counter +=1
-    return items
+#def urlTask(url, lock):
+#    items = []
+#    counter = 2
+#    check = True
+#    URL = url
+#    while (check):
+#        lock.acquire()
+#        driver = initializeDriver(URL)
+#        time.sleep(5)
+#        lock.release()
+#        items = NWscrapeForItems(driver.page_source)
+#        print("committing " + URL)
+#        lock.acquire()
+#        for item in items:
+#            print(item)
+#        time.sleep(2)
+#        #commitItems(items)
+#        lock.release()
+#        check = getNextPage2(driver.page_source)
+#        driver.quit()
+#        URL = url
+#        URL += "?pg=" + str(counter)
+#        counter +=1
+#    return items
 
-def getPickle(url):
-    driver = initializeDriver(url)
-    pickle.dump( driver.get_cookies(), open("cookies.pkl", "wb"))
-    driver.quit()
 
-def main2():
-    file = open('./newworld.txt', 'r')
-    newWorldURLS = file.readlines()
-    file.close()
+#def main2():
+#    file = open('./newworld.txt', 'r')
+#    newWorldURLS = file.readlines()
+#    file.close()
 
     #getPickle(newWorldURLS[0])
 
-    lock = threading.Lock()
-    for url in newWorldURLS:
-        t1 = threading.Thread(target=urlTask, args=(url, lock,))
-        t1.start()
+#    lock = threading.Lock()
+#    for url in newWorldURLS:
+#        t1 = threading.Thread(target=urlTask, args=(url, lock,))
+#        t1.start()
 
 
 # Go through a web page source, find the items, add details to an array of dicts, return for processing & committing
@@ -143,7 +146,7 @@ def PNSscrapeForItems(page_source):
 
         item_imageURL = item_selector.find('div', class_="fs-product-card__product-image")['data-src-s']
         
-        item_name = item_selector.find('a', class_="fs-product-card__details")
+        item_name = item_selector.find('a')
         item_name = item_name['aria-label']
         item_name = item_name.replace("\n","")
         item_name = item_name.replace("/","")
@@ -200,4 +203,4 @@ def main():
     for line in paknsaveURLS:
         items = loopPages(line[:len(line)-1])
 
-main2()
+#main2()
