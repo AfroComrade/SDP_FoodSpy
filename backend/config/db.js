@@ -26,9 +26,9 @@ init = false;
 var Firebase_OBJ = new Object();
 Firebase_OBJ.APIKEY = process.env.API_KEY;
 Firebase_OBJ.AUTHDOMAIN = process.env.AUTHDOMAIN;
-Firebase_OBJ.PROJECT_ID = process.env.PROJECTID;
+Firebase_OBJ.PROJECT_ID = process.env.PROJECT_ID;
 Firebase_OBJ.STORAGEBUCKET = process.env.STORAGEBUCKET;
-Firebase_OBJ.MESSAGINSENDERID = process.env.MESSAGINGSENDERID;
+Firebase_OBJ.MESSAGINSENDERID = process.env.MESSAGINSENDERID;
 Firebase_OBJ.APPID = process.env.APPID;
 Firebase_OBJ.MEASUREMENTID = process.env.MEASUREMENTID;
 
