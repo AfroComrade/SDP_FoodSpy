@@ -76,6 +76,9 @@ async function connectDB() {
 
 async function connectAuth()
 {
+    console.log("firebase_obj");
+    console.log(Firebase_OBJ);
+    console.log("firebaseConfig");
     console.log(firebaseConfig);
     const Auth = getAuth(FireB);
     console.log("firebase auth connected");
