@@ -24,13 +24,13 @@ init = false;
 
 //Firebase basic auth
 var Firebase_OBJ = new Object();
-Firebase_OBJ.APIKEY = process.env.api_Key;
-Firebase_OBJ.AUTHDOMAIN = process.env.authDomain;
-Firebase_OBJ.PROJECT_ID = process.env.projectId;
-Firebase_OBJ.STORAGEBUCKET = process.env.storageBucket;
-Firebase_OBJ.MESSAGINSENDERID = process.env.messagingSenderId;
-Firebase_OBJ.APPID = process.env.appId;
-Firebase_OBJ.MEASUREMENTID = process.env.measurementId;
+Firebase_OBJ.APIKEY = process.env.API_KEY;
+Firebase_OBJ.AUTHDOMAIN = process.env.AUTHDOMAIN;
+Firebase_OBJ.PROJECT_ID = process.env.PROJECTID;
+Firebase_OBJ.STORAGEBUCKET = process.env.STORAGEBUCKET;
+Firebase_OBJ.MESSAGINSENDERID = process.env.MESSAGINGSENDERID;
+Firebase_OBJ.APPID = process.env.APPID;
+Firebase_OBJ.MEASUREMENTID = process.env.MEASUREMENTID;
 
 const firebaseConfig = {
     apiKey: Firebase_OBJ.APIKEY ,
