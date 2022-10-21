@@ -43,6 +43,7 @@ const firebaseConfig = {
   };
 
 const FireB = initializeApp(
+    console.log(firebaseConfig);
     firebaseConfig
 )
 
