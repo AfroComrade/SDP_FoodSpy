@@ -43,7 +43,6 @@ const firebaseConfig = {
   };
 
 const FireB = initializeApp(
-    console.log(firebaseConfig);
     firebaseConfig
 )
 
@@ -77,6 +76,7 @@ async function connectDB() {
 
 async function connectAuth()
 {
+    console.log(firebaseConfig);
     const Auth = getAuth(FireB);
     console.log("firebase auth connected");
     return Auth;
