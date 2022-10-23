@@ -4,12 +4,11 @@ from numpy import true_divide
 
 import CountdownScraper
 import ScraperCommit
+import threading
+from concurrent.futures import ThreadPoolExecutor
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 import random
-
-#storeId=b2e98a14-c8ca-401e-99ed-edf74570c6f6&clickSource=list
-#storeId=e1925ea7-01bc-4358-ae7c-c6502da5ab12&clickSource=list
 
 PNSapiURL = "https://www.paknsave.co.nz/CommonApi/Store/ChangeStore?storeId="
 NWapiURL = "https://www.newworld.co.nz/CommonApi/Store/ChangeStore?storeId="
@@ -22,13 +21,11 @@ def main():
     ScraperCommit.firebaseInitialize()
     #PSIterateThroughShops()
     NWIterateThroughShops()
-    #CountdownScraper.getPickle(urlPage)
 
-#class="fs-selected-store__method-btn fs-selected-store__update-btn "
 def randSleep():
     time.sleep(4 + random.randint(2, 4))
 
-def LoopThroughCategories(incomingUrl, storeID):
+def LoopThroughCategories(incomingUrl, storeID, lock):
     counter = 1
     check = True
     while(check):
@@ -41,28 +38,35 @@ def LoopThroughCategories(incomingUrl, storeID):
         if (counter > 1):
             url += "?pg=" + str(counter)
         driver.get(url)
+        lock.acquire()
         randSleep()
+        lock.release()
         
         #get the items
         pageInfo = driver.page_source
         print(url)
         items = CountdownScraper.NWscrapeForItems(pageInfo)
-        for item in items:
-            print(item)
-        print("committing " + url)
-        CountdownScraper.commitItems(items)
         
         check = CountdownScraper.getNextPage2(pageInfo)
         driver.quit()
+
+        for item in items:
+            print(item)
+
+        print("committing " + url)
+        lock.acquire()
+        CountdownScraper.commitItems(items)
+        randSleep()
+        lock.release()
+
         counter += 1
 
-def IterateThroughCategories(storeID, filename):
+def IterateThroughCategories(storeID, filename, lock):
     file = open(filename, 'r')
-    paknsaveURLS = file.readlines()
-    file.close()
-    for line in paknsaveURLS:
+    categoryURLS = file.readlines()
+    for line in categoryURLS:
         print(line)
-        LoopThroughCategories(line[:len(line)-1], storeID)
+        LoopThroughCategories(line[:len(line)-1], storeID, lock)
 
 def PSIterateThroughShops():
     file = open('./StoreID.txt')
@@ -73,11 +77,13 @@ def PSIterateThroughShops():
 
 
 def NWIterateThroughShops():
-    file = open('./NWStoreIDs.txt')
+    file = open('./temp.txt')
     storeIDs = file.readlines()
     file.close()
-    for storeID in storeIDs:
-        IterateThroughCategories(storeID, "./newworld.txt")
 
+    lock = threading.Lock()
+    with ThreadPoolExecutor(max_workers = 2) as executor:
+        for storeID in storeIDs:
+            executor.submit(IterateThroughCategories, storeID=storeID, filename="./newworld.txt", lock=lock)
 
 main()

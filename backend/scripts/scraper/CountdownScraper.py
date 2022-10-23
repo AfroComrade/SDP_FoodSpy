@@ -13,7 +13,6 @@ from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
 #We only need pickle if we need cookies
 import pickle
-#import threading
 
 
 # Open the web page with various options
@@ -25,12 +24,8 @@ def initializeDriver(url):
     options.add_argument('--disable-gpu')
     options.add_argument('--user-agent=Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36')
     driver = webdriver.Chrome(ChromeDriverManager().install(), options=options)
-
-    driver.get(url)
     
-    # ~~~ Use this if you need to save and use cookies ~~~
-    #loadPickle(driver)
-
+    driver.get(url)
     return driver
 
 def loadPickle(driver):
@@ -62,12 +57,13 @@ def NWscrapeForItems(page_source):
         item_imageURL = item_selector.find('div', class_="fs-product-card__product-image")['data-src-s']
         
         item_name = item_selector.find('a', class_="fs-product-card__details")
+        item_href = item_name['href']
         item_name = item_name['aria-label']
         item_name = item_name.replace("\n","")
         item_name = item_name.replace("/","")
         item_price = str(item_dollar_price) + "." + str(item_cent_price)
 
-        product = dict({"product": item_name, item_location: item_price, "imageURL": item_imageURL})
+        product = dict({"product": item_name, item_location: item_price, "imageURL": item_imageURL, "href":item_href})
         items.append(product)
     return items
 
@@ -88,45 +84,6 @@ def loopPages(url):
         counter += 1
         time.sleep(3)
     return items
-
-#def urlTask(url, lock):
-#    items = []
-#    counter = 2
-#    check = True
-#    URL = url
-#    while (check):
-#        lock.acquire()
-#        driver = initializeDriver(URL)
-#        time.sleep(5)
-#        lock.release()
-#        items = NWscrapeForItems(driver.page_source)
-#        print("committing " + URL)
-#        lock.acquire()
-#        for item in items:
-#            print(item)
-#        time.sleep(2)
-#        #commitItems(items)
-#        lock.release()
-#        check = getNextPage2(driver.page_source)
-#        driver.quit()
-#        URL = url
-#        URL += "?pg=" + str(counter)
-#        counter +=1
-#    return items
-
-
-#def main2():
-#    file = open('./newworld.txt', 'r')
-#    newWorldURLS = file.readlines()
-#    file.close()
-
-    #getPickle(newWorldURLS[0])
-
-#    lock = threading.Lock()
-#    for url in newWorldURLS:
-#        t1 = threading.Thread(target=urlTask, args=(url, lock,))
-#        t1.start()
-
 
 # Go through a web page source, find the items, add details to an array of dicts, return for processing & committing
 def PNSscrapeForItems(page_source):
@@ -171,6 +128,27 @@ def commitItems(items):
     file = open('../firebase/items.txt', 'r')
     productlines = file.readlines()
     file.close()
+
+    file = open("./storeNames.txt", 'r')
+    storelines = file.readlines()
+    file.close()
+
+    storenames = []
+    for line in storelines:
+        name = line[:len(line)-1]
+        storenames.append(name)
+
+    itemlocation = list(items[0].keys())[1]
+    print("itemlocation: " + itemlocation)
+    storenames.append(itemlocation)
+    storenames = list(dict.fromkeys(storenames))
+    storenames.sort()
+
+    file = open("storeNames.txt", 'w')
+    for store in storenames:
+        file.write(store + '\n')
+
+
     productnames = []
     for line in productlines:
         name = line[:len(line)-1]
