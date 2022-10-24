@@ -94,25 +94,7 @@ export const  ForgotsPassword  = async (UserEmail)  =>
    }
    else
    {
-    try 
-    {
-        const auth = SetUpUsers();   
-        sendPasswordResetEmail(auth,UserEmail).then(() =>
-        {
-            //Send out password reset email.
-            alert("Reset password link has been sent");
-        }).catch((error) =>
-         {
-            console.log(error + " 1")
-            alert("Reset password link has been sent");
-          });
-    } 
-    catch (error) 
-    {
-        console.log(error + " 2")
-        alert("Reset password link has been sent");  
-          
-    }
+
 }
 }
 

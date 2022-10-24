@@ -187,13 +187,33 @@ router.post('/test', function requestHandler(req, res) {
     res.end("yes");
      */
 
-router.use('/ForgotPassword/',(req,res) => {
-    FIREAUTHS.ForgotPassword("BOOBS@BOOBIES.com");
-    
-    
-    
-});
-
+router.use('/forgotpassword/:id',(req,res) => {
+  
+        var emails = req.params.id;
+       
+        
+        
+        FIREAUTHS.ForgotPassword(emails).then(function(result)
+        {
+            const msg = {
+                value: ""
+            }
+            if(result != null)
+            {
+                msg.value = "Request Sent";
+                res.send(msg);
+            }
+            else
+            {
+                msg.value = null;
+                res.send(msg);
+            }
+            
+        }
+        );
+        
+        
+    });
 
 router.use('/UserId/',(req,res) =>{
 
@@ -205,47 +225,77 @@ router.use('/UserId/',(req,res) =>{
 
 //Email and password have been hard coded, need to set up inputting via POST
 //Login will activate the login function in fireauth
-router.use('/Login/',(req,res) =>{
-
+router.post('/Login',(req,res) =>{
     
-
-    FIREAUTHS.LOGIN("email@email.com","Idonknow3!");
+    var input = req.body;
+    
+    //console.log(JU);
+    FIREAUTHS.LOGIN(input.E,input.P).then(function(result)
+    {
+        const msg = {
+            value: ""
+        }
+        if(result != null)
+        {
+            msg.value = "Request Sent";
+            res.send(msg);
+        }
+        else
+        {
+            msg.value = null;
+            res.send(msg);
+        }
+    }
+    );
+   
     
 
 });
 
 
-router.use('/CreateUser/', (req, res) =>
+router.post('/CreateUser', (req, res) =>
 {
-    var PWD = "Idonknow3!";
-    var CPW = "Idonknow3!";
-    var EML = "NJY@aut.com";
-    var USR = "Goforit";
-
-    if(!IsEmpty(PWD) || !IsEmpty(CPW) || !IsEmpty(EML))
+ 
+    var input = req.body;
+    if(!IsEmpty(input.P) || !IsEmpty(input.CP) || !IsEmpty(input.E) || IsEmpty(input.UN))
     {
         console.log("Empty Fields");
         
     }
     else
     {
-        if(PasswordMatch(PWD,CPW))
+        if(PasswordMatch(input.P,input.CP))
         {
-            if(IsPassword(PWD) == 0)
+            if(IsPassword(input.P) == 0)
             {
                 console.log("weak password");
-                console.log(IsPassword(PWD));
+                console.log(IsPassword(input.P));
             }
             else
             {
-                if(FIREAUTHS.CheckUserNameAvailability(USR) == true)
+                if(FIREAUTHS.CheckUserNameAvailability(input.UN) == true)
                 {
                     console.log("Username has been taken");
                 }
                 else
                 {
                     console.log("Works");
-                    FIREAUTHS.CreateUser(EML,PWD,USR);
+                    FIREAUTHS.CreateUser(input.E,input.P,input.UN).then(function(result)
+                    {
+                        const msg = {
+                            value: ""
+                        }
+                        if(result != null)
+                        {
+                            msg.value = "Request Sent";
+                            res.send(msg);
+                        }
+                        else
+                        {
+                            msg.value = null;
+                            res.send(msg);
+                        }
+                    });
 
                 }
             }
@@ -256,7 +306,9 @@ router.use('/CreateUser/', (req, res) =>
         }
     }
     console.log("User has now been created");
+
 });
+
 
 router.use('/SignOut/',(req,res) =>{
     FIREAUTHS.SignOut();

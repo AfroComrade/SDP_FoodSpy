@@ -20,24 +20,25 @@ Logs user into foodspy with their inputted Email and password.
 
 */
 
-  function LOGIN(EMAIL,PASSWORD)
+async  function LOGIN(EMAIL,PASSWORD)
 {
-   try 
-   {
-      signInWithEmailAndPassword(auth,EMAIL,PASSWORD).then((UserCredential)=>{
-        const User = UserCredential.user;
-        console.log(User.email);
-        ReturnUserID();
-        return User;
-      }).catch((error)=>{
-        console.log(error.code + ": " + error.message);
-        return null;
-      })
-   } 
-   catch (error) 
-   {
-    console.log(error.code + ": " + error.message);
-   }
+  try 
+  {
+   return await   signInWithEmailAndPassword(auth,EMAIL,PASSWORD).then((UserCredential)=>{
+       const User = UserCredential.user;
+       console.log("User is now logged in!!");
+
+       return User;
+     }).catch((error)=>{
+       console.log(error.code + ": " + error.message);
+       return null;
+     })
+  } 
+  catch (error) 
+  {
+   console.log(error.code + ": " + error.message);
+
+  }
 }
 
 /* 
@@ -46,20 +47,24 @@ Sends reset email to user if they have account set up with foodspy.
 
 */
 
-  function ForgotPassword(Email)
+ async function ForgotPassword(Email)
 {
   try 
   {
-    sendPasswordResetEmail(auth,Email).then(() =>
+    return await  sendPasswordResetEmail(auth,Email).then((USR) =>
     {
         console.log("Reset email sent successfully!!");
+        return USR.data;
 
     }).catch((error)=>{
         console.log(error.code + ": " + error.message);
+        Check = 0;
+        return null;
     })
   } 
   catch (error) 
   {
+    return null;
   }
 }
 
@@ -69,11 +74,11 @@ Creates user in the firebase authentication, then begins creating username with 
 
 */
 
-  function CreateUser(Email,Password,NAME)
+async  function CreateUser(Email,Password,NAME)
 {
   try 
   {
-    createUserWithEmailAndPassword(auth,Email,Password).then((userCredentials) =>{
+     return await createUserWithEmailAndPassword(auth,Email,Password).then((userCredentials) =>{
         const USR = userCredentials.user;
         CreateUserName(NAME,USR.uid);
     }).catch((error) =>{
@@ -115,11 +120,18 @@ async function CreateUserName(UserName,UISR)
   {
     console.log("inputting username.");
     const ref = doc(FireB, "UserDetails",UserName).withConverter(USERConverter);
-    await setDoc(ref, new USER(UISR, UserName));    
+    await setDoc(ref, new USER(UISR, UserName)).then((ITPM) =>{
+      return ITPM.data;
+    }).catch((error) =>{
+      console.log(error.code +": " +error.message);
+      return null; 
+    });    
+
   } 
   catch (error)
    {
     console.log(error.code + ": " + error.message);
+
   }
 }
 
