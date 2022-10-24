@@ -5,7 +5,6 @@
   "dependencies": {
     "@splidejs/react-splide": "^0.7.10",
     "@testing-library/jest-dom": "^5.16.5",
-    "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^13.5.0",
     "bootstrap": "^3.4.1",
     "firebase": "^9.10.0",
@@ -43,5 +42,35 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@testing-library/react": "^13.4.0",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^27.5.1",
+    "react-test-renderer": "^18.2.0"
+  },
+  "jest": {
+"moduleFileExtensions": [
+  "js",
+  "jsx"
+],
+"moduleDirectories": [
+  "node_modules",
+  "bower_components",
+  "shared"
+],
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga|jsx)$": "frontend/src/utils/__mocks__/fileMock.js",
+      "\\.(css|less)$": "identity-obj-proxy",
+      "moduleFileExtensions": [
+        "js",
+        "jsx"
+      ],
+      "moduleDirectories": [
+        "node_modules",
+        "bower_components",
+        "shared"
+      ]
+    }
   }
 }

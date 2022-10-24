@@ -95,8 +95,6 @@ function SearchedItems(){
     };
 }
 
-
-
 const Grid = styled.div`
     display: grid;
     top: 5%;

@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import {FaSearch} from 'react-icons/fa';
+
 
 //Creates the search bar that is used for finding recipes.
 
@@ -22,8 +23,10 @@ function Search(){
             <div>
                 <FaSearch></FaSearch>
             <input onChange={(e) => setInput(e.target.value)} type="text" value={input} />
+            
             </div>
         </FormStyle>
+
     )
 }
 

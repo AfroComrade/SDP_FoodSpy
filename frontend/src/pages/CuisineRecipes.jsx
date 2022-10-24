@@ -5,7 +5,7 @@ import styled from "styled-components";
 import {Link} from 'react-router-dom';
 import RecipeError from "../components/RecipeError";
 
-//This page renders the Search Results from the SearchRecipe Functions
+//This page generates the recipes from the chosen cuisine on the chooseCuisine page
 function CuisineRecipes(){ 
     
     const [searchedRecipes, setSearchedRecipes] = useState([]);
@@ -13,7 +13,7 @@ function CuisineRecipes(){
 
     try{
 
-    // uses the API to find recipes including the name passed through (eg. Steak, Apples etc.)
+    // uses the API to find recipes that include the particular cuisine tag(Thai, Chinese, Indian, Korean)
     const getSearched = async () => {
         const api = await fetch(
             `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&diet=${params.cuisine}&number=10`
