@@ -54,7 +54,8 @@ Sends reset email to user if they have account set up with foodspy.
     return await  sendPasswordResetEmail(auth,Email).then((USR) =>
     {
         console.log("Reset email sent successfully!!");
-        return USR.data;
+        const Val = "Success";
+        return Val;
 
     }).catch((error)=>{
         console.log(error.code + ": " + error.message);
