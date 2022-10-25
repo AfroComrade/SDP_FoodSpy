@@ -80,9 +80,10 @@ async  function CreateUser(Email,Password,NAME)
   {
      return await createUserWithEmailAndPassword(auth,Email,Password).then((userCredentials) =>{
         const USR = userCredentials.user;
-        CreateUserName(NAME,USR.uid);
+        return USR.uid;
     }).catch((error) =>{
       console.log(error.code +": " +error.message);
+      return null;
     });
   } 
   catch (error) 
@@ -120,8 +121,8 @@ async function CreateUserName(UserName,UISR)
   {
     console.log("inputting username.");
     const ref = doc(FireB, "UserDetails",UserName).withConverter(USERConverter);
-    await setDoc(ref, new USER(UISR, UserName)).then((ITPM) =>{
-      return ITPM.data;
+    return await setDoc(ref, new USER(UISR, UserName)).then((ITPM) =>{
+      return UserName;
     }).catch((error) =>{
       console.log(error.code +": " +error.message);
       return null; 

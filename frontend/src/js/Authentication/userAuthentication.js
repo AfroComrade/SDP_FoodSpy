@@ -51,31 +51,34 @@ async function CheckUserName(UserName)
 
 export const Login  = async (EML,PWD)  => 
 {
-    if((IsEmpty(EML) === true) || (IsEmpty(PWD) === true))
-   {
-        alert("Please enter an email address and password");
-   }
-   else
-   {
-    console.log("StartUSR");
-    try 
+    const Details = 
     {
-
-            //const auth = ;        
-            const USR = await signInWithEmailAndPassword(SetUpUsers(),EML,PWD)
-            .catch((error) =>
-            {
-               alert("Incorrect email or password");
-             });;
-            console.log(USR);
-        
-    } 
-    catch (error) 
-    {
-        console(error.message);
-        alert("User:" + EML + " is now logged in");
+        E:EML,
+        P: PWD
     }
-}
+
+    const Go =
+    {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body:JSON.stringify(Details)
+    }
+    const data = await fetch(
+        `https://sdpfoodspy.herokuapp.com/api/account/Login`,Go
+     ); 
+     const items = await data.json();
+     console.log(items.value);
+     if(items.value != null)
+     {
+        alert("You are now logged in!!");
+        return true;
+     }
+     else
+     {
+        alert("Incorrect details!!");
+        return false;
+        
+     }
 }
 
 
@@ -88,14 +91,12 @@ export const Login  = async (EML,PWD)  =>
 
 export const  ForgotsPassword  = async (UserEmail)  =>
 {
-   if(IsEmpty(UserEmail) === true)
-   {
-        alert("Please enter an email address");
-   }
-   else
-   {
-
-}
+    const data = await fetch(
+        `https://sdpfoodspy.herokuapp.com/api/account/forgotpassword/${UserEmail}`
+     );
+     const items = await data.json();
+     console.log(items);
+     alert("You are now logged in!!");
 }
 
 
@@ -138,24 +139,36 @@ async function Signout()
 
 export const  UserCreate = async (EML,PWD,CFPWD,USRName) =>
 {
-    if(PasswordMatch(PWD,CFPWD))
+    console.log("Begin");
+    const Details = 
     {
-    if(IsEmpty(PWD) &&IsEmpty(CFPWD) && IsEmpty(EML) && IsEmpty(USRName))
-    {   
-        
-        createUserWithEmailAndPassword(SetUpUsers(),EML,PWD).then((userCredential) =>
-    {
-        alert("New user created");
-    }).catch((error) => 
-    {
-        console.log(error.message);
-    });
+        E:EML,
+        P: PWD,
+        CP:CFPWD,
+        UN:USRName
     }
-}
-else
-{
-    alert("both passwords must match");
-}
+    const Go =
+    {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body:JSON.stringify(Details)
+    }
+    const data = await fetch(
+        `https://sdpfoodspy.herokuapp.com/api/account/CreateUser`,Go
+     );
+     const items = await data.json();
+     console.log("Here" + items.value);
+     if(items.value != null)
+     {
+        alert("You are now a user in Foodspy");
+        return true;
+     }
+     else
+     {
+        alert("Please make sure all correct details are in");
+        return false;
+     }  
+     console.log("End");
      
 }
 
