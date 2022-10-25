@@ -21,17 +21,23 @@ function DietRecipes(){
         const recipes = await api.json();
         setSearchedRecipes(recipes.results);
     };
-
+    
     useEffect(() => {
         getSearched(params.search);
     },[params.search]);
+
+
+    // Stores the Diet name as a title so that it can be called in the heading.
+    
+    let title = params.diet;
+    title = title.charAt(0).toUpperCase() + title.slice(1);
 
     // Generates the display, using searchedRecipes to map recipes to clickable cards, which will take the user to the Recipe page. 
     return (
     <><div style={{
         paddingTop: '25px',
     }}>
-            <h3>Search Results</h3>
+            <h3>{title} Results</h3>
         </div><Grid>
                 {searchedRecipes.map((recipe) => {
                     return (

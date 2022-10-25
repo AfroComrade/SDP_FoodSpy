@@ -26,12 +26,16 @@ function CuisineRecipes(){
         getSearched(params.search);
     },[params.search]);
 
+    // Gets the Cuisine type and stores it for the heading at the top of the page
+    let title = params.cuisine;
+    title = title.charAt(0).toUpperCase() + title.slice(1);
+    
     // Generates the display, using searchedRecipes to map recipes to clickable cards, which will take the user to the Recipe page. 
     return (
     <><div style={{
         paddingTop: '25px',
     }}>
-            <h3>Search Results</h3>
+            <h3>{title} Results</h3>
         </div><Grid>
                 {searchedRecipes.map((recipe) => {
                     return (
