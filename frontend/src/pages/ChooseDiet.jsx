@@ -9,16 +9,20 @@ import vegetarian from "../assets/images/vegetarian.jpg"
 
 function ChooseDiet() {
 
-    // Generates the display using cards and sliders to be able to display a variety of recipes.
+    //Generates four different cards that give users an option for different Dietry Requirements 
     return (
         <>
             <div style={{
                 paddingTop: '25px',
             }}>
             </div>
+        
             <Wrapper>
 
                 <h3>Dietry Requirements</h3>
+                 {/* 
+                 Sets up Cards for the screen, allowing for 4 cards to be displayed, and no arrows as there is only 4 cards displayed
+                  */}
                 <Splide options={{
                     perPage: 4,
                     arrows: false,
@@ -27,28 +31,28 @@ function ChooseDiet() {
                 }}>
                     <Card>
                         <Link to={'/recipes_diet/vegan'}>
-                            <img src={vegan} alt="Picture of Vegan spelt out with Scrabble Tiles"/>
+                            <img src={vegan} alt="Vegan spelt out with Scrabble Tiles"/>
                             <Gradient />
                         </Link>
                     </Card>
 
                     <Card>
                         <Link to={'/recipes_diet/vegetarian'}>
-                            <img src={vegetarian} alt="Picture of Vegetarian spelt out with Scrabble Tiles"/>
+                            <img src={vegetarian} alt="Vegetarian spelt out with Scrabble Tiles"/>
                             <Gradient />
                         </Link>
                     </Card>
 
                     <Card>
                         <Link to={'/recipes_diet/ketogenic'}>
-                            <img src={keto} alt="Picture of Keto spelt out with Scrabble Tiles"/>
+                            <img src={keto} alt="Keto spelt out with Scrabble Tiles"/>
                             <Gradient />
                         </Link>
                     </Card>
 
                     <Card>
                         <Link to={'/recipes_diet/paleo'}>
-                        <img src={paleo} alt="Picture of Paleo spelt out with Scrabble Tiles"/>
+                        <img src={paleo} alt="Paleo spelt out with Scrabble Tiles"/>
                             <Gradient />
                         </Link>
                     </Card>

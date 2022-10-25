@@ -30,7 +30,7 @@ function Pages() {
         <Route path="/recipes_saved" element={<SavedRecipes />}/>
         <Route path="/recipes_database" element={<RecipeDatabase/>}/>
         <Route path="/recipes_choose_cuisine" element={<ChooseCuisine/>}/>
-        <Route path="/recipe/:name" element={<Recipe />}/>
+        <Route path="/recipe/:id" element={<Recipe />}/>
         <Route path="/searched/:search" element={<Searched />}/>
         <Route path="/searcheditems/:searchitems" element={<SearchedItems />}/>
         <Route path="/forgot_password" element={<ForgotPassword />}/>

@@ -1,0 +1,85 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[` 1`] = `
+<div
+  className="sc-bczRLJ mynUg"
+>
+  <div>
+    <h1 />
+    <img />
+  </div>
+  <div
+    className="sc-dkzDqf bhLXgh"
+  >
+    <button
+      className="sc-gsnTZi cGhFXW"
+      onClick={[Function]}
+    >
+      Summary
+    </button>
+    <button
+      className="sc-gsnTZi cGhFXW active"
+      onClick={[Function]}
+    >
+      Instructions
+    </button>
+    <button
+      className="sc-gsnTZi cGhFXW"
+      onClick={[Function]}
+    >
+      Ingredients
+    </button>
+    <div>
+      <h2
+        dangerouslySetInnerHTML={
+          Object {
+            "__html": undefined,
+          }
+        }
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[` 2`] = `
+<div
+  className="sc-bczRLJ mynUg"
+>
+  <div>
+    <h1 />
+    <img />
+  </div>
+  <div
+    className="sc-dkzDqf bhLXgh"
+  >
+    <button
+      className="sc-gsnTZi cGhFXW"
+      onClick={[Function]}
+    >
+      Summary
+    </button>
+    <button
+      className="sc-gsnTZi cGhFXW active"
+      onClick={[Function]}
+    >
+      Instructions
+    </button>
+    <button
+      className="sc-gsnTZi cGhFXW"
+      onClick={[Function]}
+    >
+      Ingredients
+    </button>
+    <div>
+      <h2
+        dangerouslySetInnerHTML={
+          Object {
+            "__html": undefined,
+          }
+        }
+      />
+    </div>
+  </div>
+</div>
+`;

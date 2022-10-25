@@ -9,7 +9,7 @@ import korean from '../assets/images/koreanfood.jpg'
 
 function ChooseCuisine() {
 
-    // Generates the display using cards and sliders to be able to display a variety of recipes.
+    // Generates the display using four cards to give users the option of different cuisine options
     return (
         <>
             <div style={{
@@ -17,6 +17,9 @@ function ChooseCuisine() {
             }}>
             </div>
             <Wrapper>
+                {/*
+                    Sets up four cards, with no arrows as they will all fit on the screen (only set up for full sized browser at this stage)
+                */}
 
                 <h3>Cuisine Options</h3>
                 <Splide options={{
@@ -27,7 +30,7 @@ function ChooseCuisine() {
                 }}>
                     <Card>
                         <Link to={'/recipes_cuisine/indian'}>
-                            <img src={indianfood} alt="Picture of a variety of Indian Food"/>
+                            <img src={indianfood} alt="A variety of Indian Food"/>
                             <p>Indian</p>
                             <Gradient />
                         </Link>
@@ -35,7 +38,7 @@ function ChooseCuisine() {
 
                     <Card>
                         <Link to={'/recipes_cuisine/thai'}>
-                            <img src={thai} alt="Picture of a variety of Thai Food"/>
+                            <img src={thai} alt="A variety of Thai Food"/>
                             <p>Thai</p>
                             <Gradient />
                         </Link>
@@ -43,7 +46,7 @@ function ChooseCuisine() {
 
                     <Card>
                         <Link to={'/recipes_cuisine/chinese'}>
-                            <img src={chinese} alt="Picture of a dumpling bowl" />
+                            <img src={chinese} alt="A dumpling bowl" />
                             <p>Chinese</p>
                             <Gradient />
                         </Link>
@@ -51,7 +54,7 @@ function ChooseCuisine() {
 
                     <Card>
                         <Link to={'/recipes_cuisine/korean'}>
-                        <img src={korean} alt="Picture of a variety of Korean Fried Dish"/>
+                        <img src={korean} alt="A variety of Korean Fried Dish"/>
                             <p>Korean</p>
                             <Gradient />
                         </Link>
