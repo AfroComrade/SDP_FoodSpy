@@ -142,6 +142,7 @@ function SearchedItems(){
                             <ListGroup className="list-group-flush">
                                 {showItems(items)}
                             </ListGroup>
+                            <Button >Add to Cart</Button>
                         </Card>
                     );
                 })}

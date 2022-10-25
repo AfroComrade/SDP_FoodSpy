@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Container, Nav, Navbar, NavDropdown, Button, Modal, Form, Offcanvas, Row, Col } from 'react-bootstrap';
+import { Container, Nav, Navbar, NavDropdown, Button, Modal, Form, Offcanvas, Row, Col, Card } from 'react-bootstrap';
 import {Login} from '../js/Authentication/userAuthentication';
 // This component creates the NavBar, which can be accessed on all pages, and is used to be able to navigate between pages
 // bring up a popbox for the User to login, and a side window which includes the users shopping cart.
@@ -47,7 +47,8 @@ function Menu() {
               <NavDropdown.Item href="/recipes_choose_diet">Recipes by Dietary Requirements</NavDropdown.Item>
             </NavDropdown>
           </Nav>
-      <Nav>
+      <Nav style={{
+                paddingLeft: '10px', paddingRight: '10px'}}>
         <Button variant="outline-light" onClick={handleShow}>
         <span className="badge bg-dark text-white ms-0 rounded-pill"><i className="bi bi-person"> 
                 </i> </span> Account</Button>{' '}
@@ -107,7 +108,7 @@ function Menu() {
         </Modal.Footer>
       </Modal>
           <Nav style={{
-                paddingLeft: '10px'}}>        
+                paddingLeft: '10px', paddingRight: '10px'}}>        
         <Button variant="outline-light" onClick={toggleShow}>
             <i className="bi bi-cart3"></i> Cart
             <span className="badge bg-dark text-white ms-1 rounded-pill">0</span>
@@ -117,8 +118,18 @@ function Menu() {
           <Offcanvas.Title>Cart</Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
-          Some text as placeholder. In real life you can have the elements you
-          have chosen. Like, text, images, lists, etc.
+          <Card>
+            <Card.Img src='https://media.istockphoto.com/vectors/thumbnail-image-vector-graphic-vector-id1147544807?k=20&m=1147544807&s=612x612&w=0&h=pBhz1dkwsCMq37Udtp9sfxbjaMl27JUapoyYpQm0anc='/>
+            <Card.Body className='d-flex flex-column'>
+              <Card.Title className='d-flex justify-content-between align-items-baseline mb-4'>
+                <span className='fs-2'>Item Name</span>
+                <span className='ms-2'>1 in cart</span>
+                <span className='ms-2'>$0.99</span>
+                </Card.Title>
+                <Button onClick={toggleClose} variant="danger" size="sm" style={{
+                width: "40px", alignContent: "center"}}>X</Button>
+            </Card.Body>
+          </Card>
         </Offcanvas.Body>
       </Offcanvas>
       </Nav>
