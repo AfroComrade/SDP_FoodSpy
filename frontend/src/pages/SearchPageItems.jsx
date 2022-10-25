@@ -4,6 +4,7 @@ import styled from "styled-components";
 import SearchItems from "../components/SearchItems";
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
+import { Button } from "react-bootstrap";
 
 
 
@@ -150,7 +151,20 @@ function SearchedItems(){
     );}
     else{
         return(
-        <h4>Item not found</h4>
+            <div style={{
+                paddingTop: '300px',
+                paddingBottom: '350px',
+                paddingLeft: '100px',
+                paddingRight: '100px',
+                textAlign: "center"
+                
+        }}>
+        <h2 style={{
+                paddingBottom: '50px'
+                
+        }}>Item "{params.searchitems}" not found</h2>
+        <Button variant="dark" size="lg" href="/" >Back to Search</Button>
+        </div>
         )
     }
 }
