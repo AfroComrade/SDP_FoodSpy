@@ -235,7 +235,7 @@ router.post('/Login',(req,res) =>{
             const msg = {
                 value: ""
             }
-            if(result != null && RT != null)
+            if(result != null)
             {
                 msg.value = "Request Sent";
                 res.send(msg);
