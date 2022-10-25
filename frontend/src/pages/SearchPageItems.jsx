@@ -109,7 +109,6 @@ function SearchedItems(){
         return cheapest
     }
 
-
     if(searchedItems.length > 0)
                     {
     return (
