@@ -60,6 +60,7 @@ function SearchedItems(){
         console.log(params.searchitems);
     },[params.searchitems]);
 
+
     const showItems = (item) => {
         const location = locations.map(store => {
             if (item[store] != null)
