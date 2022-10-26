@@ -188,49 +188,12 @@ router.post('/test', function requestHandler(req, res) {
      */
 
 router.use('/forgotpassword/:id',(req,res) => {
-  
-        var emails = req.params.id;
-       
-        
-        
-        FIREAUTHS.ForgotPassword(emails).then(function(result)
-        {
-            const msg = {
-                value: ""
-            }
-            if(result != null)
-            {
-                msg.value = "Request Sent";
-                res.send(msg);
-            }
-            else
-            {
-                msg.value = null;
-                res.send(msg);
-            }
-            
-        }
-        );
-        
-        
-    });
-
-router.use('/UserId/',(req,res) =>{
-
-    FIREAUTHS.ReturnUserID();
-    //Main purpose is to return User ID.
-
-    //FIREAUTHS.testFstore();
-});
-
-//Email and password have been hard coded, need to set up inputting via POST
-//Login will activate the login function in fireauth
-router.post('/Login',(req,res) =>{
     
-    var input = req.body;
+    var emails = req.params.id;
+   
     
-    //console.log(JU);
-    FIREAUTHS.LOGIN(input.E,input.P).then(function(result)
+    
+    FIREAUTHS.ForgotPassword(emails).then(function(result)
     {
         const msg = {
             value: ""
@@ -245,6 +208,45 @@ router.post('/Login',(req,res) =>{
             msg.value = null;
             res.send(msg);
         }
+        
+    }
+    );
+    
+    
+    });
+
+router.use('/UserId/',(req,res) =>{
+
+    FIREAUTHS.ReturnUserID();
+    //Main purpose is to return User ID.
+
+    //FIREAUTHS.testFstore();
+});
+
+
+router.post('/Login',(req,res) =>{
+    
+    var input = req.body;
+    
+    //console.log(JU);
+    FIREAUTHS.LOGIN(input.E,input.P).then(function(result)
+    {
+        
+            const msg = {
+                value: ""
+            }
+            if(result != null)
+            {
+                msg.value = "Request Sent";
+                res.send(msg);
+            }
+            else
+            {
+                msg.value = null;
+                res.send(msg);
+            }
+        
+       
     }
     );
    
@@ -257,7 +259,7 @@ router.post('/CreateUser', (req, res) =>
 {
  
     var input = req.body;
-    if(!IsEmpty(input.P) || !IsEmpty(input.CP) || !IsEmpty(input.E) || IsEmpty(input.UN))
+    if(!IsEmpty(input.P) || !IsEmpty(input.CP) || !IsEmpty(input.E) || !IsEmpty(input.UN))
     {
         console.log("Empty Fields");
         
@@ -279,22 +281,27 @@ router.post('/CreateUser', (req, res) =>
                 }
                 else
                 {
-                    console.log("Works");
                     FIREAUTHS.CreateUser(input.E,input.P,input.UN).then(function(result)
                     {
-                        const msg = {
-                            value: ""
-                        }
-                        if(result != null)
-                        {
-                            msg.value = "Request Sent";
-                            res.send(msg);
-                        }
-                        else
-                        {
-                            msg.value = null;
-                            res.send(msg);
-                        }
+                        console.log(result);
+                        FIREAUTHS.CreateUserName(result,input.UN).then(function(RST){
+                            const msg = {
+                                value: ""
+                            }
+                            if(result != null && RST != null)
+                            {
+                                msg.value = "Request Sent";
+                                res.send(msg);
+                            }
+                            else
+                            {
+                                msg.value = null;
+                                res.send(msg);
+                            }
+
+
+                        });
+                        
                     });
 
                 }
@@ -318,3 +325,4 @@ router.use('/SignOut/',(req,res) =>{
 //--------------------------------------------------------------------//
 
 module.exports = router;
+

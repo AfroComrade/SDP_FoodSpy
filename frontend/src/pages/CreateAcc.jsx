@@ -1,4 +1,6 @@
 import React from 'react';
+
+import { Form, Button } from 'react-bootstrap';
 import {UserCreate} from '../js/Authentication/userAuthentication';
 import logo from "../assets/FoodspyLogo.png"
 import { useState } from "react";
@@ -59,74 +61,50 @@ import { useState } from "react";
                 alignItems: "center",
         }}>
             
-
-            <form className="form-signin needs-validation" novalidate oninput='confirmPassword.setCustomValidity(confirmPassword.value != newPassword.value ? true : false)'>
-
-                <div className="form-outline mb-4">
-                  <input type="text" id="form3Example1cg"
-                  input = {UserName}
-                  onChange={(e) => SetUserName(e.target.value)}
-                  className="form-control form-control-lg" placeholder="Name" required/>
-                  <label class="form-label" for="form3Example1cg">Your Name</label>
-                </div>
-
-                <div className="form-outline mb-4">
-                  <input type="email" id="form3Example3cg" 
-                  input = {Email}
-                  onChange={(e) => SetEmail(e.target.value)}
-                  className="form-control form-control-lg" placeholder="Email" required />
-                  <label className="form-label" for="form3Example3cg">Your Email</label>
-                </div>
-
-                <div className="form-group">
-        <div className="form-group">
-          
-          <div className="form-outline mb-4">
-
-            <input name="newPassword" type="password" autocomplete="off" 
-             input = {Password}
-             onChange={(e) => SetPassword(e.target.value)}
-             className="form-control form-control-lg" id="newPassword" placeholder="New Password" aria-describedby="inputGroupPrepend" required />
-            <label className="form-label" for="newPassword">New Password</label>
-            <div className="invalid-feedback">
-              Please enter new password.
-            </div>
+            <div>  
+          <Form className="d-flex mx-sm-10 mb-2 ">
             
-          </div>
-        </div>
-      </div>
-      <div className="form-group">
-        
-        <div className="form-outline mb-4">
+                    <Form.Control
+                    size = "lg"
+                    type="text"
+                    placeholder="Enter your Name"
+                    input = {UserName}
+                    onChange={(e) => SetUserName(e.target.value)}
+                    className="me-2"
+                    aria-label="Email" />
 
-          <input name="confirmPassword" type="password" autocomplete="off" 
-          input = {ConfirmPassword}
-          onChange={(e) => SetConfirmPassword(e.target.value)}
-          className="form-control form-control-lg" id="confirmPassword" placeholder="Confirm Password" aria-describedby="inputGroupPrepend" required />
-          <label className="sr-only" for="confirmPassword">Confirm Password</label>
-          <div className="invalid-feedback">
-            Password not a match.
-          </div>
-        </div>
-      </div>
+            <Form.Control
+                    size = "lg"
+                    type="email"
+                    placeholder="Enter your email"
+                    input = {Email}
+                    onChange={(e) => SetEmail(e.target.value)}
+                    className="me-2"
+                    aria-label="Email" />
+            
+            <Form.Control
+            size = "lg"
+            type="password"
+            placeholder="Enter your Password"
+            input = {Password}
+            onChange={(e) => SetPassword(e.target.value)}
+            className="me-2"
+            aria-label="Email" />
+            
+            <Form.Control
+            size = "lg"
+            type="password"
+            placeholder="Enter your Password again"
+            input = {ConfirmPassword}
+            onChange={(e) => SetConfirmPassword(e.target.value)}
+            className="me-2"
+            aria-label="Email" />
 
-                {/* <div class="form-check d-flex justify-content-center mb-5">
-                  <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3cg" required/>
-                  <label class="form-check-label" for="form2Example3g">
-                    I agree all statements in <a href="#!" class="text-body"><u>Terms of service</u></a>
-                  </label>
-                </div> */}
+                <Button onClick={CreateUser} variant="dark">Go</Button>    
+                
+               </Form>   
+               </div>
 
-                <div className="d-flex justify-content-center">
-                  <button id="submitBtn" onClick={CreateUser}
-                    className="btn btn-dark btn-block btn-lg ">Register</button>
-                    
-                </div>
-
-                {/* <p class="text-center text-muted mt-5 mb-0">Have already an account? <a href="#!"
-                    class="fw-bold text-body"><u>Login here</u></a></p> */}
-
-              </form>
 
             </div>
 
