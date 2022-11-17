@@ -13,4 +13,7 @@ def firebaseCommit(items):
     doc_ref = db.collection(u'items')
     for item in items:
         #print(item)
-        doc_ref.document(item["product"]).set(item)
+        doc_ref.document(item["product"]).set(item, merge=True)
+
+#foodspy-39b75-firebase-adminsdk-xjs48-8714375f78.json
+#foodspy-39b75-firebase-adminsdk-xjs48-8714375f78.json
