@@ -14,24 +14,25 @@ function Recipe(){
 
     let params = useParams();
     const [details, setDetails] = useState({});
-    const [activeTab, setActiveTab] = useState("instructions");
+    const [activeTab, setActiveTab] = useState("summary");
 
     // Fetches the recipe from the API using it's name and the API key obtained by our account.
 
 
     useEffect(() => {
-            const fetchDetails = async () => {
-        const data = await fetch(`https://api.spoonacular.com/recipes/${params.name}/information?apiKey=${process.env.REACT_APP_API_KEY}`);
+        const fetchDetails = async () => {
+        const data = await fetch(`https://api.spoonacular.com/recipes/${params.id}/information?apiKey=${process.env.REACT_APP_API_KEY}`);
         const detailData = await data.json();
         setDetails(detailData);
     };
         fetchDetails()
-    }, [params.name]);
+    }, [params.id]);
 
 
     // DetailWrapper that houses all the content for the page, with a few buttons and activeTabs to allow users to click between and view different
     // information about the recipe. Using the the const details declared above, we are able to pull through different parts of the recipe using the
     // different variable names.
+    
     return <DetailWrapper>
     
         <div>

@@ -6,8 +6,6 @@ import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import { Button } from "react-bootstrap";
 
-
-
 function SearchedItems(){ 
 
     let locations = [
@@ -48,6 +46,7 @@ function SearchedItems(){
     const getSearchedItems = async (name) => {
         console.log("hello1");
         console.log(name);
+ 
         const data = await fetch(
             `https://sdpfoodspy.herokuapp.com/api/products/search/${name}`
         );
@@ -60,7 +59,6 @@ function SearchedItems(){
         getSearchedItems(params.searchitems);
         console.log(params.searchitems);
     },[params.searchitems]);
-
 
     const showItems = (item) => {
         const location = locations.map(store => {
@@ -144,6 +142,7 @@ function SearchedItems(){
                             <ListGroup className="list-group-flush">
                                 {showItems(items)}
                             </ListGroup>
+                            <Button >Add to Cart</Button>
                         </Card>
                     );
                 })}
@@ -166,7 +165,7 @@ function SearchedItems(){
         <Button variant="dark" size="lg" href="/" >Back to Search</Button>
         </div>
         )
-    }
+    };
 }
 
 const Grid = styled.div`

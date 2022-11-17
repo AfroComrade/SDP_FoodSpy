@@ -1,25 +1,25 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import { Splide, SplideSlide } from "@splidejs/react-splide";
-import '@splidejs/react-splide/css';
 import { Link } from 'react-router-dom';
 import RecipeError from "./RecipeError";
 import Search from "./SearchRecipe";
+import { Splide, SplideSlide } from '@splidejs/react-splide';
+
+import '@splidejs/react-splide/css';
 
 // This component renders a random selection of recipes, with the intention of it becoming something 
 // that can be used to find specific types of recipes eg. Breakfast, Lunch and Dinner options 
 // (whether this works or not will be discovered in Sprint 2)
 
 function Popular() {
-
     
     const [popular, setPopRecipe] = useState([]);
 
     try{
+       
         useEffect(() => {
             getPopRecipes();
         }, []);
-
 
         // Uses the API to fetch a random number of recipes, currently assigned to 20.
         const getPopRecipes = async () => {
@@ -28,9 +28,7 @@ function Popular() {
             );
             const data = await api.json();
             setPopRecipe(data.recipes);
-        };
-
-        
+        };     
 
         // Generates the display using cards and sliders to be able to display a variety of recipes.
         return (
